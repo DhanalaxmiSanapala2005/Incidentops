@@ -2,9 +2,32 @@ import streamlit as st
 import ui
 
 st.set_page_config(page_title="IncidentOps", page_icon=":material/crisis_alert:", layout="wide")
+
+import os, sys, subprocess, time, socket
+from pathlib import Path
+
+
+@st.cache_resource(show_spinner="Starting backend, this takes a few seconds...")
+def start_backend():
+    """On Streamlit Cloud there is no separate server, so launch the mock service and API here."""
+    if os.getenv("API_URL"):          # an external backend is configured, don't start another
+        return "external"
+    root = Path(__file__).resolve().parents[1]
+    env = {**os.environ, "PYTHONPATH": str(root)}
+    subprocess.Popen([sys.executable, "-m", "uvicorn", "integrations.mock_app:app", "--port", "8001"], cwd=root, env=env)
+    subprocess.Popen([sys.executable, "-m", "uvicorn", "backend.main:app", "--port", "8000"], cwd=root, env=env)
+    for _ in range(60):               # wait until the API accepts connections
+        try:
+            socket.create_connection(("127.0.0.1", 8000), timeout=1).close(); break
+        except OSError:
+            time.sleep(1)
+    return "local"
+
+
+start_backend()
 ui.inject_css()
 
-
+   
 def login():
     _, mid, _ = st.columns([1, 1.3, 1])
     with mid:
