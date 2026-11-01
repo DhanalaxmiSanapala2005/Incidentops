@@ -1,0 +1,8 @@
+alert_type,metric_name,unit,medium_at,high_at,rule
+cpu,cpu,percent,80,95,severity from thresholds
+memory,memory,percent,85,95,severity from thresholds
+latency,latency_p95_ms,milliseconds (rules use seconds),1000,4000,severity from thresholds
+error_rate,error_rate,percent,5,10,severity from thresholds
+downtime,downtime,seconds,0,0,always critical
+incident,,,,,incident severity is the highest alert severity; 3 or more distinct breaching metrics raise it one level
+correlation,,,,,same service within 30 minutes of the incident opening (same service and metric again = duplicate)

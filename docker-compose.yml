@@ -1,0 +1,24 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment: { POSTGRES_USER: incident, POSTGRES_PASSWORD: incident, POSTGRES_DB: incidentops }
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U incident"], interval: 3s, retries: 20 }
+    volumes: [pgdata:/var/lib/postgresql/data]
+  mock:
+    build: .
+    command: uvicorn integrations.mock_app:app --host 0.0.0.0 --port 8001
+    env_file: .env
+    ports: ["8001:8001"]
+  api:
+    build: .
+    command: sh -c "alembic upgrade head && uvicorn backend.main:app --host 0.0.0.0 --port 8000"
+    env_file: .env
+    depends_on: { db: { condition: service_healthy }, mock: { condition: service_started } }
+    ports: ["8000:8000"]
+  ui:
+    build: .
+    command: streamlit run frontend/app.py --server.address 0.0.0.0 --server.port 8501
+    env_file: .env
+    depends_on: [api]
+    ports: ["8501:8501"]
+volumes: { pgdata: {} }

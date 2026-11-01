@@ -1,0 +1,13 @@
+service_name,tier,owner_team,depends_on,environment
+api-gateway,1,platform,auth-service;checkout-service;search-service,sandbox
+auth-service,1,identity,redis-cache;postgres-primary,sandbox
+checkout-service,1,commerce,payment-service;inventory-service;order-service,sandbox
+payment-service,1,payments,bank-gateway;postgres-primary,sandbox
+order-service,2,commerce,postgres-primary;inventory-service,sandbox
+inventory-service,2,supply,postgres-primary,sandbox
+search-service,2,discovery,catalog-service,sandbox
+catalog-service,2,discovery,postgres-primary,sandbox
+notification-service,3,messaging,smtp-relay,sandbox
+report-service,3,analytics,postgres-primary,sandbox
+user-profile-service,2,identity,postgres-primary,sandbox
+shipping-service,2,logistics,carrier-api,sandbox

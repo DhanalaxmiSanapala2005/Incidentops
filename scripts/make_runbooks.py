@@ -1,0 +1,71 @@
+"""Generates the synthetic, versioned runbooks and resolved-incident corpus (no real data)."""
+import json, pathlib
+D = pathlib.Path(__file__).resolve().parents[1] / "data"
+RB = [
+ ("high_cpu_investigation", 2, "cpu", "engineer", "scale", "High CPU investigation",
+  "CPU above 90 percent, request queue growing, worker pool saturated, queue depth rising, latency elevated.",
+  "Check queue depth and worker saturation. Confirm no deployment in the last hour. Compare CPU per replica.",
+  "Scale the service out by two replicas (maximum 10). Do not scale if a deployment regression is suspected.",
+  "More replicas raise cost and open more database connections.", "Scale back to the previous replica count.",
+  "CPU below 80 percent and latency under 1 second for 5 minutes."),
+ ("memory_exhaustion", 1, "memory", "engineer", "restart", "Memory exhaustion",
+  "OutOfMemoryError, heap usage above 90 percent, GC overhead limit exceeded, memory leak, container OOM kill.",
+  "Inspect heap usage trend and GC logs. Check whether memory grows monotonically since the last start.",
+  "Restart the service to reclaim memory, then open a ticket for the leak.",
+  "About 30 seconds of interruption; in-flight requests are dropped.", "Restart is not reversible. If unhealthy afterwards, escalate to on-call.",
+  "Memory below 85 percent after restart and health check passing."),
+ ("api_latency", 1, "latency", "engineer", "rollback", "API latency spike",
+  "Latency above 2 seconds, p95 elevated, timeouts, slow upstream, CPU rising with latency.",
+  "Correlate the latency start with deployments and database connection errors. Check cache hit ratio.",
+  "If a deployment preceded the spike, roll back. If cache misses dominate, raise cache TTL.",
+  "Rollback reverts recent features; cache TTL increases staleness.", "Redeploy the rolled-back version or restore the TTL value.",
+  "Latency under 1 second and error rate under 5 percent."),
+ ("elevated_error_rate", 1, "error_rate", "engineer", "config_change", "Elevated error rate",
+  "5xx responses, NullPointerException, error rate above 5 percent, feature flag enabled, upstream bad gateway.",
+  "Group errors by endpoint and feature flag. Check for upstream dependency failures such as CDN 502 responses.",
+  "Disable the offending feature flag via an allowlisted configuration change. Upstream failures need escalation.",
+  "Flagged feature becomes unavailable to users.", "Restore the previous flag value.",
+  "Error rate below 5 percent."),
+ ("service_downtime", 1, "downtime", "engineer", "restart", "Service downtime",
+  "Health checks failing, liveness probe failed, process exited, CrashLoopBackOff, no space left on device.",
+  "Read the last logs before exit. Check disk space and exit codes. Disk-full cases are not fixed by a restart.",
+  "Restart the service. If it fails again, escalate to the platform on-call engineer.",
+  "Brief outage while the container restarts.", "Not reversible. Escalate if health does not return.",
+  "Health endpoint reports healthy for 3 consecutive checks."),
+ ("database_connection_pool", 1, "latency", "engineer", "rollback", "Database connection pool exhaustion",
+  "db connection timeout, connection pool exhausted, pool at 100, waiting connections, error rate and latency after a deployment.",
+  "Compare pool usage before and after the latest deployment. A new release leaking connections is the usual cause.",
+  "Roll back to the previous known-good version. Do not raise pool size first; it hides the leak.",
+  "Reverts features in the faulty release; schema changes may not be backward compatible.",
+  "Redeploy the faulty version only after the leak is fixed.", "Pool usage under 60 percent and errors cleared."),
+ ("deployment_rollback", 1, "error_rate", "engineer", "rollback", "Deployment rollback procedure",
+  "Errors started right after a deployment, schema mismatch, regression after release, faulty deployment.",
+  "Confirm the deployment timestamp precedes the first alert and errors reference the new release.",
+  "Roll back to the previous successful version listed in deployment history.",
+  "Reverts the release's features and fixes.", "Roll forward by redeploying the release once fixed.",
+  "Error rate normal and health checks green after the rollback."),
+ ("alert_storm_handling", 1, "latency", "engineer", "config_change", "Alert storm and cache miss handling",
+  "Many duplicate alerts, token cache miss ratio high, slow identity provider, repeated latency alerts.",
+  "Group duplicates by service and metric; check cache miss ratio and upstream provider latency.",
+  "Increase cache TTL to 600 seconds through an allowlisted configuration change.",
+  "Cached values may be stale for up to 10 minutes.", "Restore the previous cache TTL.",
+  "Cache miss ratio below 0.3 and latency under 1 second."),
+ ("credential_rotation_admin_only", 1, "security", "admin", None, "Credential rotation (restricted)",
+  "Rotate service credentials and database passwords. Restricted to administrators.",
+  "Vault procedures.", "Admin only.", "Services reconnect.", "Restore previous secret version.", "Services reconnect."),
+]
+for did, ver, cat, acc, op, title, sym, diag, rem, side, rb, ver_ in RB:
+    (D / "runbooks" / f"{did}_v{ver}.md").write_text(
+        f"---\ndoc_id: {did}\nversion: {ver}\ncategory: {cat}\naccess: {acc}\nrecommended_action: {op}\n---\n"
+        f"# {title}\n\n## Symptoms\n{sym}\n\n## Diagnosis\n{diag}\n\n## Remediation\n{rem}\n\n"
+        f"## Side effects\n{side}\n\n## Rollback plan\n{rb}\n\n## Verification\n{ver_}\n", encoding="utf-8")
+(D / "resolved_incidents.json").write_text(json.dumps([
+ {"doc_id": "INC-104", "version": 1, "title": "Payment DB pool exhaustion after deploy", "access": "engineer",
+  "text": "Latency and errors after deployment, db connection timeout, pool exhausted. Resolved by rolling back to the previous version. Pool recovered within 3 minutes."},
+ {"doc_id": "INC-087", "version": 1, "title": "Search OOM", "access": "engineer",
+  "text": "OutOfMemoryError heap usage above 95 percent. Resolved by restart; leak ticketed."},
+ {"doc_id": "INC-092", "version": 1, "title": "Worker CPU saturation", "access": "engineer",
+  "text": "CPU 97 percent with queue depth growing and no deployment. Resolved by scaling from 2 to 4 replicas."},
+ {"doc_id": "INC-071", "version": 1, "title": "Pricing NPE behind feature flag", "access": "engineer",
+  "text": "NullPointerException with feature flag enabled caused 5xx errors. Resolved by disabling the feature flag."}], indent=1), encoding="utf-8")
+print("runbooks:", len(RB))

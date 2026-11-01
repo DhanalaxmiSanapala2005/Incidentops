@@ -1,0 +1,32 @@
+{
+ "current_versions_only": {
+  "n": 35,
+  "r1": 26,
+  "r3": 33,
+  "r5": 34,
+  "mrr": 29.375,
+  "kb_n": 34,
+  "kb3": 30,
+  "leak": 0,
+  "ver_n": 2,
+  "ver_ok": 2
+ },
+ "all_versions_included": {
+  "n": 35,
+  "r1": 26,
+  "r3": 32,
+  "r5": 34,
+  "mrr": 29.277777777777775,
+  "kb_n": 34,
+  "kb3": 30,
+  "leak": 0,
+  "ver_n": 2,
+  "ver_ok": 1
+ },
+ "top1_similarity": {
+  "out_of_scope_mean": 0.069,
+  "out_of_scope_max": 0.156,
+  "in_scope_mean": 0.313,
+  "in_scope_min": 0.118
+ }
+}

@@ -1,0 +1,8 @@
+capability,viewer,engineer,admin
+view incidents and reports,yes,yes,yes
+ask the read-only assistant,yes,yes,yes
+import data and run investigations,no,yes,yes
+approve or reject actions,no,yes,yes
+retrieve engineer runbooks,no,yes,yes
+retrieve admin-only runbooks,no,no,yes
+"users, settings, audit log, reset",no,no,yes

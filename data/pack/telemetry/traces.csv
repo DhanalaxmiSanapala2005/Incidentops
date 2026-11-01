@@ -1,0 +1,201 @@
+trace_id,span_id,parent_span_id,service_name,operation,start_time,duration_ms,status,error_message
+tr-d0228462,sp-d02284-0,,checkout-service,POST /checkout,2026-10-01T08:05:00Z,185,ok,
+tr-d0228462,sp-d02284-1,sp-d02284-0,checkout-service,PromoCodeValidator.apply,2026-10-01T08:05:01Z,5,ok,
+tr-d0228462,sp-d02284-2,sp-d02284-0,inventory-service,GET /stock,2026-10-01T08:05:02Z,43,ok,
+tr-db5c0d97,sp-db5c0d-0,,checkout-service,POST /checkout,2026-10-01T08:15:00Z,176,ok,
+tr-db5c0d97,sp-db5c0d-1,sp-db5c0d-0,checkout-service,PromoCodeValidator.apply,2026-10-01T08:15:01Z,5,ok,
+tr-db5c0d97,sp-db5c0d-2,sp-db5c0d-0,inventory-service,GET /stock,2026-10-01T08:15:02Z,43,ok,
+tr-ff0c7a41,sp-ff0c7a-0,,checkout-service,POST /checkout,2026-10-01T08:25:00Z,200,ok,
+tr-ff0c7a41,sp-ff0c7a-1,sp-ff0c7a-0,checkout-service,PromoCodeValidator.apply,2026-10-01T08:25:01Z,5,ok,
+tr-ff0c7a41,sp-ff0c7a-2,sp-ff0c7a-0,inventory-service,GET /stock,2026-10-01T08:25:02Z,45,ok,
+tr-5ef537e7,sp-5ef537-0,,checkout-service,POST /checkout,2026-10-01T08:31:00Z,3217,ok,
+tr-5ef537e7,sp-5ef537-1,sp-5ef537-0,checkout-service,PromoCodeValidator.apply,2026-10-01T08:31:01Z,3037,error,NullPointerException
+tr-5ef537e7,sp-5ef537-2,sp-5ef537-0,inventory-service,GET /stock,2026-10-01T08:31:02Z,44,ok,
+tr-f69984fd,sp-f69984-0,,checkout-service,POST /checkout,2026-10-01T08:34:00Z,3229,ok,
+tr-f69984fd,sp-f69984-1,sp-f69984-0,checkout-service,PromoCodeValidator.apply,2026-10-01T08:34:01Z,3012,error,NullPointerException
+tr-f69984fd,sp-f69984-2,sp-f69984-0,inventory-service,GET /stock,2026-10-01T08:34:02Z,47,ok,
+tr-da48bc31,sp-da48bc-0,,checkout-service,POST /checkout,2026-10-01T08:38:00Z,3055,ok,
+tr-da48bc31,sp-da48bc-1,sp-da48bc-0,checkout-service,PromoCodeValidator.apply,2026-10-01T08:38:01Z,3163,error,NullPointerException
+tr-da48bc31,sp-da48bc-2,sp-da48bc-0,inventory-service,GET /stock,2026-10-01T08:38:02Z,45,ok,
+tr-7ed9887e,sp-7ed988-0,,checkout-service,POST /checkout,2026-10-01T08:42:00Z,3092,ok,
+tr-7ed9887e,sp-7ed988-1,sp-7ed988-0,checkout-service,PromoCodeValidator.apply,2026-10-01T08:42:01Z,3036,error,NullPointerException
+tr-7ed9887e,sp-7ed988-2,sp-7ed988-0,inventory-service,GET /stock,2026-10-01T08:42:02Z,42,ok,
+tr-fa17f8ee,sp-fa17f8-0,,checkout-service,POST /checkout,2026-10-01T08:46:00Z,3128,ok,
+tr-fa17f8ee,sp-fa17f8-1,sp-fa17f8-0,checkout-service,PromoCodeValidator.apply,2026-10-01T08:46:01Z,3007,error,NullPointerException
+tr-fa17f8ee,sp-fa17f8-2,sp-fa17f8-0,inventory-service,GET /stock,2026-10-01T08:46:02Z,42,ok,
+tr-bfcfb05c,sp-bfcfb0-0,,payment-service,POST /charge,2026-10-02T11:05:00Z,191,ok,
+tr-bfcfb05c,sp-bfcfb0-1,sp-bfcfb0-0,payment-service,LedgerCache.load,2026-10-02T11:05:01Z,11,ok,
+tr-439fda77,sp-439fda-0,,payment-service,POST /charge,2026-10-02T11:15:00Z,206,ok,
+tr-439fda77,sp-439fda-1,sp-439fda-0,payment-service,LedgerCache.load,2026-10-02T11:15:01Z,10,ok,
+tr-57f9f99b,sp-57f9f9-0,,payment-service,POST /charge,2026-10-02T11:25:00Z,236,ok,
+tr-57f9f99b,sp-57f9f9-1,sp-57f9f9-0,payment-service,LedgerCache.load,2026-10-02T11:25:01Z,11,ok,
+tr-128a0a45,sp-128a0a-0,,payment-service,POST /charge,2026-10-02T11:31:00Z,965,ok,
+tr-128a0a45,sp-128a0a-1,sp-128a0a-0,payment-service,LedgerCache.load,2026-10-02T11:31:01Z,655,error,GC pause
+tr-2a4cabc3,sp-2a4cab-0,,payment-service,POST /charge,2026-10-02T11:34:00Z,832,ok,
+tr-2a4cabc3,sp-2a4cab-1,sp-2a4cab-0,payment-service,LedgerCache.load,2026-10-02T11:34:01Z,707,error,GC pause
+tr-cf499602,sp-cf4996-0,,payment-service,POST /charge,2026-10-02T11:38:00Z,968,ok,
+tr-cf499602,sp-cf4996-1,sp-cf4996-0,payment-service,LedgerCache.load,2026-10-02T11:38:01Z,652,error,GC pause
+tr-42296815,sp-422968-0,,payment-service,POST /charge,2026-10-02T11:42:00Z,830,ok,
+tr-42296815,sp-422968-1,sp-422968-0,payment-service,LedgerCache.load,2026-10-02T11:42:01Z,711,error,GC pause
+tr-2c14df41,sp-2c14df-0,,payment-service,POST /charge,2026-10-02T11:46:00Z,925,ok,
+tr-2c14df41,sp-2c14df-1,sp-2c14df-0,payment-service,LedgerCache.load,2026-10-02T11:46:01Z,746,error,GC pause
+tr-9ab7ea40,sp-9ab7ea-0,,search-service,GET /search,2026-10-03T14:05:00Z,179,ok,
+tr-9ab7ea40,sp-9ab7ea-1,sp-9ab7ea-0,search-service,QueryExecutor.run,2026-10-03T14:05:01Z,84,ok,
+tr-9ab7ea40,sp-9ab7ea-2,sp-9ab7ea-0,catalog-service,GET /items,2026-10-03T14:05:02Z,30,ok,
+tr-08d825c2,sp-08d825-0,,search-service,GET /search,2026-10-03T14:15:00Z,158,ok,
+tr-08d825c2,sp-08d825-1,sp-08d825-0,search-service,QueryExecutor.run,2026-10-03T14:15:01Z,76,ok,
+tr-08d825c2,sp-08d825-2,sp-08d825-0,catalog-service,GET /items,2026-10-03T14:15:02Z,31,ok,
+tr-08a9c011,sp-08a9c0-0,,search-service,GET /search,2026-10-03T14:25:00Z,164,ok,
+tr-08a9c011,sp-08a9c0-1,sp-08a9c0-0,search-service,QueryExecutor.run,2026-10-03T14:25:01Z,73,ok,
+tr-08a9c011,sp-08a9c0-2,sp-08a9c0-0,catalog-service,GET /items,2026-10-03T14:25:02Z,34,ok,
+tr-7882ab8b,sp-7882ab-0,,search-service,GET /search,2026-10-03T14:31:00Z,1631,ok,
+tr-7882ab8b,sp-7882ab-1,sp-7882ab-0,search-service,QueryExecutor.run,2026-10-03T14:31:01Z,1488,ok,
+tr-7882ab8b,sp-7882ab-2,sp-7882ab-0,catalog-service,GET /items,2026-10-03T14:31:02Z,35,ok,
+tr-e41bd3e1,sp-e41bd3-0,,search-service,GET /search,2026-10-03T14:34:00Z,1577,ok,
+tr-e41bd3e1,sp-e41bd3-1,sp-e41bd3-0,search-service,QueryExecutor.run,2026-10-03T14:34:01Z,1448,ok,
+tr-e41bd3e1,sp-e41bd3-2,sp-e41bd3-0,catalog-service,GET /items,2026-10-03T14:34:02Z,34,ok,
+tr-2071ddb6,sp-2071dd-0,,search-service,GET /search,2026-10-03T14:38:00Z,1622,ok,
+tr-2071ddb6,sp-2071dd-1,sp-2071dd-0,search-service,QueryExecutor.run,2026-10-03T14:38:01Z,1433,ok,
+tr-2071ddb6,sp-2071dd-2,sp-2071dd-0,catalog-service,GET /items,2026-10-03T14:38:02Z,33,ok,
+tr-b42f7085,sp-b42f70-0,,search-service,GET /search,2026-10-03T14:42:00Z,1514,ok,
+tr-b42f7085,sp-b42f70-1,sp-b42f70-0,search-service,QueryExecutor.run,2026-10-03T14:42:01Z,1440,ok,
+tr-b42f7085,sp-b42f70-2,sp-b42f70-0,catalog-service,GET /items,2026-10-03T14:42:02Z,34,ok,
+tr-133ef318,sp-133ef3-0,,search-service,GET /search,2026-10-03T14:46:00Z,1629,ok,
+tr-133ef318,sp-133ef3-1,sp-133ef3-0,search-service,QueryExecutor.run,2026-10-03T14:46:01Z,1402,ok,
+tr-133ef318,sp-133ef3-2,sp-133ef3-0,catalog-service,GET /items,2026-10-03T14:46:02Z,35,ok,
+tr-4fab5992,sp-4fab59-0,,order-service,POST /orders,2026-10-04T09:05:00Z,276,ok,
+tr-4fab5992,sp-4fab59-1,sp-4fab59-0,order-service,db.acquire_connection,2026-10-04T09:05:01Z,5,ok,
+tr-4fab5992,sp-4fab59-2,sp-4fab59-0,postgres-primary,INSERT orders,2026-10-04T09:05:02Z,15,ok,
+tr-8954486d,sp-895448-0,,order-service,POST /orders,2026-10-04T09:15:00Z,262,ok,
+tr-8954486d,sp-895448-1,sp-895448-0,order-service,db.acquire_connection,2026-10-04T09:15:01Z,5,ok,
+tr-8954486d,sp-895448-2,sp-895448-0,postgres-primary,INSERT orders,2026-10-04T09:15:02Z,15,ok,
+tr-86c3592e,sp-86c359-0,,order-service,POST /orders,2026-10-04T09:25:00Z,271,ok,
+tr-86c3592e,sp-86c359-1,sp-86c359-0,order-service,db.acquire_connection,2026-10-04T09:25:01Z,5,ok,
+tr-86c3592e,sp-86c359-2,sp-86c359-0,postgres-primary,INSERT orders,2026-10-04T09:25:02Z,17,ok,
+tr-f4c12bac,sp-f4c12b-0,,order-service,POST /orders,2026-10-04T09:31:00Z,5052,ok,
+tr-f4c12bac,sp-f4c12b-1,sp-f4c12b-0,order-service,db.acquire_connection,2026-10-04T09:31:01Z,4540,error,pool timeout
+tr-f4c12bac,sp-f4c12b-2,sp-f4c12b-0,postgres-primary,INSERT orders,2026-10-04T09:31:02Z,19,ok,
+tr-3835d927,sp-3835d9-0,,order-service,POST /orders,2026-10-04T09:34:00Z,5048,ok,
+tr-3835d927,sp-3835d9-1,sp-3835d9-0,order-service,db.acquire_connection,2026-10-04T09:34:01Z,4904,error,pool timeout
+tr-3835d927,sp-3835d9-2,sp-3835d9-0,postgres-primary,INSERT orders,2026-10-04T09:34:02Z,18,ok,
+tr-64fa768e,sp-64fa76-0,,order-service,POST /orders,2026-10-04T09:38:00Z,4905,ok,
+tr-64fa768e,sp-64fa76-1,sp-64fa76-0,order-service,db.acquire_connection,2026-10-04T09:38:01Z,4751,error,pool timeout
+tr-64fa768e,sp-64fa76-2,sp-64fa76-0,postgres-primary,INSERT orders,2026-10-04T09:38:02Z,19,ok,
+tr-4c08095b,sp-4c0809-0,,order-service,POST /orders,2026-10-04T09:42:00Z,4713,ok,
+tr-4c08095b,sp-4c0809-1,sp-4c0809-0,order-service,db.acquire_connection,2026-10-04T09:42:01Z,4793,error,pool timeout
+tr-4c08095b,sp-4c0809-2,sp-4c0809-0,postgres-primary,INSERT orders,2026-10-04T09:42:02Z,20,ok,
+tr-a0d23dff,sp-a0d23d-0,,order-service,POST /orders,2026-10-04T09:46:00Z,5067,ok,
+tr-a0d23dff,sp-a0d23d-1,sp-a0d23d-0,order-service,db.acquire_connection,2026-10-04T09:46:01Z,4587,error,pool timeout
+tr-a0d23dff,sp-a0d23d-2,sp-a0d23d-0,postgres-primary,INSERT orders,2026-10-04T09:46:02Z,18,ok,
+tr-e4a73c63,sp-e4a73c-0,,inventory-service,GET /stock,2026-10-05T12:05:00Z,67,ok,
+tr-cd6193db,sp-cd6193-0,,inventory-service,GET /stock,2026-10-05T12:15:00Z,61,ok,
+tr-a3cf76a3,sp-a3cf76-0,,inventory-service,GET /stock,2026-10-05T12:25:00Z,66,ok,
+tr-736dc9b8,sp-736dc9-0,,inventory-service,GET /stock,2026-10-05T12:31:00Z,29486,error,no healthy upstream
+tr-f32f5fea,sp-f32f5f-0,,inventory-service,GET /stock,2026-10-05T12:34:00Z,31866,error,no healthy upstream
+tr-02a7344b,sp-02a734-0,,inventory-service,GET /stock,2026-10-05T12:38:00Z,28433,error,no healthy upstream
+tr-084b9d84,sp-084b9d-0,,inventory-service,GET /stock,2026-10-05T12:42:00Z,31936,error,no healthy upstream
+tr-6e694876,sp-6e6948-0,,inventory-service,GET /stock,2026-10-05T12:46:00Z,28454,error,no healthy upstream
+tr-5c365641,sp-5c3656-0,,payment-service,POST /charge,2026-10-06T15:05:00Z,202,ok,
+tr-5c365641,sp-5c3656-1,sp-5c3656-0,bank-gateway,POST /authorize,2026-10-06T15:05:01Z,177,ok,
+tr-daf5210c,sp-daf521-0,,payment-service,POST /charge,2026-10-06T15:15:00Z,252,ok,
+tr-daf5210c,sp-daf521-1,sp-daf521-0,bank-gateway,POST /authorize,2026-10-06T15:15:01Z,162,ok,
+tr-5dd31c8b,sp-5dd31c-0,,payment-service,POST /charge,2026-10-06T15:25:00Z,206,ok,
+tr-5dd31c8b,sp-5dd31c-1,sp-5dd31c-0,bank-gateway,POST /authorize,2026-10-06T15:25:01Z,144,ok,
+tr-9c75c402,sp-9c75c4-0,,payment-service,POST /charge,2026-10-06T15:31:00Z,6382,ok,
+tr-9c75c402,sp-9c75c4-1,sp-9c75c4-0,bank-gateway,POST /authorize,2026-10-06T15:31:01Z,6223,error,timeout
+tr-a76e95ab,sp-a76e95-0,,payment-service,POST /charge,2026-10-06T15:34:00Z,6638,ok,
+tr-a76e95ab,sp-a76e95-1,sp-a76e95-0,bank-gateway,POST /authorize,2026-10-06T15:34:01Z,5767,error,timeout
+tr-64e54efa,sp-64e54e-0,,payment-service,POST /charge,2026-10-06T15:38:00Z,6672,ok,
+tr-64e54efa,sp-64e54e-1,sp-64e54e-0,bank-gateway,POST /authorize,2026-10-06T15:38:01Z,6324,error,timeout
+tr-7f5f705d,sp-7f5f70-0,,payment-service,POST /charge,2026-10-06T15:42:00Z,6527,ok,
+tr-7f5f705d,sp-7f5f70-1,sp-7f5f70-0,bank-gateway,POST /authorize,2026-10-06T15:42:01Z,5726,error,timeout
+tr-1260c783,sp-1260c7-0,,payment-service,POST /charge,2026-10-06T15:46:00Z,6564,ok,
+tr-1260c783,sp-1260c7-1,sp-1260c7-0,bank-gateway,POST /authorize,2026-10-06T15:46:01Z,5845,error,timeout
+tr-abaf20c5,sp-abaf20-0,,auth-service,POST /token,2026-10-07T10:05:00Z,82,ok,
+tr-abaf20c5,sp-abaf20-1,sp-abaf20-0,redis-cache,GET session,2026-10-07T10:05:01Z,2,ok,
+tr-abaf20c5,sp-abaf20-2,sp-abaf20-0,auth-service,db.query user,2026-10-07T10:05:02Z,10,ok,
+tr-b3231846,sp-b32318-0,,auth-service,POST /token,2026-10-07T10:15:00Z,101,ok,
+tr-b3231846,sp-b32318-1,sp-b32318-0,redis-cache,GET session,2026-10-07T10:15:01Z,1,ok,
+tr-b3231846,sp-b32318-2,sp-b32318-0,auth-service,db.query user,2026-10-07T10:15:02Z,10,ok,
+tr-21cfc515,sp-21cfc5-0,,auth-service,POST /token,2026-10-07T10:25:00Z,103,ok,
+tr-21cfc515,sp-21cfc5-1,sp-21cfc5-0,redis-cache,GET session,2026-10-07T10:25:01Z,2,ok,
+tr-21cfc515,sp-21cfc5-2,sp-21cfc5-0,auth-service,db.query user,2026-10-07T10:25:02Z,9,ok,
+tr-beb9c7f4,sp-beb9c7-0,,auth-service,POST /token,2026-10-07T10:31:00Z,1767,ok,
+tr-beb9c7f4,sp-beb9c7-1,sp-beb9c7-0,redis-cache,GET session,2026-10-07T10:31:01Z,3,error,miss
+tr-beb9c7f4,sp-beb9c7-2,sp-beb9c7-0,auth-service,db.query user,2026-10-07T10:31:02Z,1526,ok,
+tr-ad75e855,sp-ad75e8-0,,auth-service,POST /token,2026-10-07T10:34:00Z,1800,ok,
+tr-ad75e855,sp-ad75e8-1,sp-ad75e8-0,redis-cache,GET session,2026-10-07T10:34:01Z,3,error,miss
+tr-ad75e855,sp-ad75e8-2,sp-ad75e8-0,auth-service,db.query user,2026-10-07T10:34:02Z,1578,ok,
+tr-abfab363,sp-abfab3-0,,auth-service,POST /token,2026-10-07T10:38:00Z,1833,ok,
+tr-abfab363,sp-abfab3-1,sp-abfab3-0,redis-cache,GET session,2026-10-07T10:38:01Z,3,error,miss
+tr-abfab363,sp-abfab3-2,sp-abfab3-0,auth-service,db.query user,2026-10-07T10:38:02Z,1471,ok,
+tr-0488384b,sp-048838-0,,auth-service,POST /token,2026-10-07T10:42:00Z,1804,ok,
+tr-0488384b,sp-048838-1,sp-048838-0,redis-cache,GET session,2026-10-07T10:42:01Z,3,error,miss
+tr-0488384b,sp-048838-2,sp-048838-0,auth-service,db.query user,2026-10-07T10:42:02Z,1508,ok,
+tr-98afb15b,sp-98afb1-0,,auth-service,POST /token,2026-10-07T10:46:00Z,1824,ok,
+tr-98afb15b,sp-98afb1-1,sp-98afb1-0,redis-cache,GET session,2026-10-07T10:46:01Z,2,error,miss
+tr-98afb15b,sp-98afb1-2,sp-98afb1-0,auth-service,db.query user,2026-10-07T10:46:02Z,1380,ok,
+tr-729e2352,sp-729e23-0,,api-gateway,ROUTE /*,2026-10-08T13:05:00Z,28,ok,
+tr-729e2352,sp-729e23-1,sp-729e23-0,api-gateway,tls and auth filters,2026-10-08T13:05:01Z,7,ok,
+tr-a21c80b0,sp-a21c80-0,,api-gateway,ROUTE /*,2026-10-08T13:15:00Z,27,ok,
+tr-a21c80b0,sp-a21c80-1,sp-a21c80-0,api-gateway,tls and auth filters,2026-10-08T13:15:01Z,8,ok,
+tr-6603c359,sp-6603c3-0,,api-gateway,ROUTE /*,2026-10-08T13:25:00Z,30,ok,
+tr-6603c359,sp-6603c3-1,sp-6603c3-0,api-gateway,tls and auth filters,2026-10-08T13:25:01Z,8,ok,
+tr-34a225ac,sp-34a225-0,,api-gateway,ROUTE /*,2026-10-08T13:31:00Z,2660,ok,
+tr-34a225ac,sp-34a225-1,sp-34a225-0,api-gateway,tls and auth filters,2026-10-08T13:31:01Z,2332,ok,
+tr-2f491d93,sp-2f491d-0,,api-gateway,ROUTE /*,2026-10-08T13:34:00Z,2434,ok,
+tr-2f491d93,sp-2f491d-1,sp-2f491d-0,api-gateway,tls and auth filters,2026-10-08T13:34:01Z,2167,ok,
+tr-59c09005,sp-59c090-0,,api-gateway,ROUTE /*,2026-10-08T13:38:00Z,2523,ok,
+tr-59c09005,sp-59c090-1,sp-59c090-0,api-gateway,tls and auth filters,2026-10-08T13:38:01Z,2379,ok,
+tr-36d6f6a8,sp-36d6f6-0,,api-gateway,ROUTE /*,2026-10-08T13:42:00Z,2455,ok,
+tr-36d6f6a8,sp-36d6f6-1,sp-36d6f6-0,api-gateway,tls and auth filters,2026-10-08T13:42:01Z,2239,ok,
+tr-2f458245,sp-2f4582-0,,api-gateway,ROUTE /*,2026-10-08T13:46:00Z,2564,ok,
+tr-2f458245,sp-2f4582-1,sp-2f4582-0,api-gateway,tls and auth filters,2026-10-08T13:46:01Z,2132,ok,
+tr-a9eab516,sp-a9eab5-0,,notification-service,POST /send,2026-10-09T08:05:00Z,130,ok,
+tr-bca2a4fc,sp-bca2a4-0,,notification-service,POST /send,2026-10-09T08:15:00Z,126,ok,
+tr-12d0094b,sp-12d009-0,,notification-service,POST /send,2026-10-09T08:25:00Z,117,ok,
+tr-616de6d9,sp-616de6-0,,notification-service,POST /send,2026-10-09T08:31:00Z,28904,error,TLS handshake failure
+tr-32ca592f,sp-32ca59-0,,notification-service,POST /send,2026-10-09T08:34:00Z,30237,error,TLS handshake failure
+tr-fef84b99,sp-fef84b-0,,notification-service,POST /send,2026-10-09T08:38:00Z,29575,error,TLS handshake failure
+tr-46ccd4dc,sp-46ccd4-0,,notification-service,POST /send,2026-10-09T08:42:00Z,28081,error,TLS handshake failure
+tr-cd8837db,sp-cd8837-0,,notification-service,POST /send,2026-10-09T08:46:00Z,31643,error,TLS handshake failure
+tr-763cfef3,sp-763cfe-0,,report-service,GET /reports/export,2026-10-10T11:05:00Z,310,ok,
+tr-763cfef3,sp-763cfe-1,sp-763cfe-0,report-service,render pdf,2026-10-10T11:05:01Z,257,ok,
+tr-2b9ce06f,sp-2b9ce0-0,,report-service,GET /reports/export,2026-10-10T11:15:00Z,291,ok,
+tr-2b9ce06f,sp-2b9ce0-1,sp-2b9ce0-0,report-service,render pdf,2026-10-10T11:15:01Z,288,ok,
+tr-57c92c91,sp-57c92c-0,,report-service,GET /reports/export,2026-10-10T11:25:00Z,322,ok,
+tr-57c92c91,sp-57c92c-1,sp-57c92c-0,report-service,render pdf,2026-10-10T11:25:01Z,296,ok,
+tr-d2f00bce,sp-d2f00b-0,,report-service,GET /reports/export,2026-10-10T11:31:00Z,1465,ok,
+tr-d2f00bce,sp-d2f00b-1,sp-d2f00b-0,report-service,render pdf,2026-10-10T11:31:01Z,1416,ok,
+tr-c51bc980,sp-c51bc9-0,,report-service,GET /reports/export,2026-10-10T11:34:00Z,1468,ok,
+tr-c51bc980,sp-c51bc9-1,sp-c51bc9-0,report-service,render pdf,2026-10-10T11:34:01Z,1435,ok,
+tr-4ba81b2d,sp-4ba81b-0,,report-service,GET /reports/export,2026-10-10T11:38:00Z,1419,ok,
+tr-4ba81b2d,sp-4ba81b-1,sp-4ba81b-0,report-service,render pdf,2026-10-10T11:38:01Z,1388,ok,
+tr-04a2b0a2,sp-04a2b0-0,,report-service,GET /reports/export,2026-10-10T11:42:00Z,1296,ok,
+tr-04a2b0a2,sp-04a2b0-1,sp-04a2b0-0,report-service,render pdf,2026-10-10T11:42:01Z,1394,ok,
+tr-b0443e33,sp-b0443e-0,,report-service,GET /reports/export,2026-10-10T11:46:00Z,1451,ok,
+tr-b0443e33,sp-b0443e-1,sp-b0443e-0,report-service,render pdf,2026-10-10T11:46:01Z,1436,ok,
+tr-8769f324,sp-8769f3-0,,user-profile-service,GET /profile,2026-10-11T14:05:00Z,107,ok,
+tr-7b629368,sp-7b6293-0,,user-profile-service,GET /profile,2026-10-11T14:15:00Z,91,ok,
+tr-3c96f2fe,sp-3c96f2-0,,user-profile-service,GET /profile,2026-10-11T14:25:00Z,106,ok,
+tr-8626ed88,sp-8626ed-0,,user-profile-service,GET /profile,2026-10-11T14:31:00Z,301,error,serialization error
+tr-1fae018f,sp-1fae01-0,,user-profile-service,GET /profile,2026-10-11T14:34:00Z,316,error,serialization error
+tr-9088757d,sp-908875-0,,user-profile-service,GET /profile,2026-10-11T14:38:00Z,314,error,serialization error
+tr-50d26903,sp-50d269-0,,user-profile-service,GET /profile,2026-10-11T14:42:00Z,312,error,serialization error
+tr-3fc6046f,sp-3fc604-0,,user-profile-service,GET /profile,2026-10-11T14:46:00Z,318,error,serialization error
+tr-528ebae5,sp-528eba-0,,shipping-service,POST /rates,2026-10-12T09:05:00Z,226,ok,
+tr-528ebae5,sp-528eba-1,sp-528eba-0,carrier-api,GET /quote,2026-10-12T09:05:01Z,169,ok,
+tr-f4b7a12b,sp-f4b7a1-0,,shipping-service,POST /rates,2026-10-12T09:15:00Z,211,ok,
+tr-f4b7a12b,sp-f4b7a1-1,sp-f4b7a1-0,carrier-api,GET /quote,2026-10-12T09:15:01Z,140,ok,
+tr-3a1fb9e4,sp-3a1fb9-0,,shipping-service,POST /rates,2026-10-12T09:25:00Z,201,ok,
+tr-3a1fb9e4,sp-3a1fb9-1,sp-3a1fb9-0,carrier-api,GET /quote,2026-10-12T09:25:01Z,169,ok,
+tr-c36da405,sp-c36da4-0,,shipping-service,POST /rates,2026-10-12T09:31:00Z,4352,ok,
+tr-c36da405,sp-c36da4-1,sp-c36da4-0,carrier-api,GET /quote,2026-10-12T09:31:01Z,4534,error,timeout
+tr-6a9b8d00,sp-6a9b8d-0,,shipping-service,POST /rates,2026-10-12T09:34:00Z,4652,ok,
+tr-6a9b8d00,sp-6a9b8d-1,sp-6a9b8d-0,carrier-api,GET /quote,2026-10-12T09:34:01Z,4164,error,timeout
+tr-d4ae4c95,sp-d4ae4c-0,,shipping-service,POST /rates,2026-10-12T09:38:00Z,4418,ok,
+tr-d4ae4c95,sp-d4ae4c-1,sp-d4ae4c-0,carrier-api,GET /quote,2026-10-12T09:38:01Z,4700,error,timeout
+tr-5ae5d7c7,sp-5ae5d7-0,,shipping-service,POST /rates,2026-10-12T09:42:00Z,4832,ok,
+tr-5ae5d7c7,sp-5ae5d7-1,sp-5ae5d7-0,carrier-api,GET /quote,2026-10-12T09:42:01Z,4690,error,timeout
+tr-83e4479a,sp-83e447-0,,shipping-service,POST /rates,2026-10-12T09:46:00Z,4946,ok,
+tr-83e4479a,sp-83e447-1,sp-83e447-0,carrier-api,GET /quote,2026-10-12T09:46:01Z,4790,error,timeout

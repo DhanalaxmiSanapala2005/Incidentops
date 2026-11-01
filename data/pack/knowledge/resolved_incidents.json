@@ -1,0 +1,491 @@
+[
+ {
+  "incident_id": "HIST-001",
+  "title": "Checkout 5xx spike after release",
+  "service": "checkout-service",
+  "category": "error_rate",
+  "symptoms": "5xx responses rising minutes after a release; NullPointerException in promo validation",
+  "evidence": [
+   "error spike began 3 minutes after deployment 2.9.0",
+   "the exception appears only after the deployment"
+  ],
+  "confirmed_root_cause": "regression in promo code validation introduced in 2.9.0",
+  "resolution": "rolled back to the previous version",
+  "remediation_outcome": "recovered; error rate 0.5 percent within 4 minutes",
+  "playbook_id": "RB-001",
+  "playbook_version": 2,
+  "resolved_minutes": 14,
+  "access": "engineer",
+  "text": "Checkout 5xx spike after release. Symptoms: 5xx responses rising minutes after a release; NullPointerException in promo validation. Evidence: error spike began 3 minutes after deployment 2.9.0; the exception appears only after the deployment. Root cause: regression in promo code validation introduced in 2.9.0. Resolution: rolled back to the previous version. Outcome: recovered; error rate 0.5 percent within 4 minutes."
+ },
+ {
+  "incident_id": "HIST-002",
+  "title": "Order errors after release were a downstream outage",
+  "service": "order-service",
+  "category": "error_rate",
+  "symptoms": "error rate 9 percent after release 5.0.1; rollback did not help",
+  "evidence": [
+   "traces showed 4 second spans in inventory-service",
+   "rollback to 5.0.0 had no effect"
+  ],
+  "confirmed_root_cause": "database failover in inventory-service",
+  "resolution": "waited for the failover and escalated to the platform team",
+  "remediation_outcome": "recovered after failover; the rollback was unnecessary",
+  "playbook_id": "RB-001",
+  "playbook_version": 2,
+  "resolved_minutes": 41,
+  "access": "engineer",
+  "text": "Order errors after release were a downstream outage. Symptoms: error rate 9 percent after release 5.0.1; rollback did not help. Evidence: traces showed 4 second spans in inventory-service; rollback to 5.0.0 had no effect. Root cause: database failover in inventory-service. Resolution: waited for the failover and escalated to the platform team. Outcome: recovered after failover; the rollback was unnecessary."
+ },
+ {
+  "incident_id": "HIST-003",
+  "title": "Search CPU saturation during a sale",
+  "service": "search-service",
+  "category": "cpu",
+  "symptoms": "cpu 96 percent, request rate tripled, latency rising",
+  "evidence": [
+   "request rate 3 times baseline",
+   "thread pool saturated in the logs"
+  ],
+  "confirmed_root_cause": "legitimate traffic spike above capacity",
+  "resolution": "scaled from 3 to 6 replicas",
+  "remediation_outcome": "cpu 55 percent within 6 minutes",
+  "playbook_id": "RB-002",
+  "playbook_version": 1,
+  "resolved_minutes": 12,
+  "access": "engineer",
+  "text": "Search CPU saturation during a sale. Symptoms: cpu 96 percent, request rate tripled, latency rising. Evidence: request rate 3 times baseline; thread pool saturated in the logs. Root cause: legitimate traffic spike above capacity. Resolution: scaled from 3 to 6 replicas. Outcome: cpu 55 percent within 6 minutes."
+ },
+ {
+  "incident_id": "HIST-004",
+  "title": "Gateway CPU high from a retry storm",
+  "service": "api-gateway",
+  "category": "cpu",
+  "symptoms": "cpu 98 percent with identical alerts every minute",
+  "evidence": [
+   "client retries increased request volume 4 times after an upstream failure"
+  ],
+  "confirmed_root_cause": "retry storm caused by upstream timeouts, not organic traffic",
+  "resolution": "scaled the gateway to 6 replicas; the owner fixed the upstream later",
+  "remediation_outcome": "cpu recovered but the upstream fix was required",
+  "playbook_id": "RB-002",
+  "playbook_version": 1,
+  "resolved_minutes": 33,
+  "access": "engineer",
+  "text": "Gateway CPU high from a retry storm. Symptoms: cpu 98 percent with identical alerts every minute. Evidence: client retries increased request volume 4 times after an upstream failure. Root cause: retry storm caused by upstream timeouts, not organic traffic. Resolution: scaled the gateway to 6 replicas; the owner fixed the upstream later. Outcome: cpu recovered but the upstream fix was required."
+ },
+ {
+  "incident_id": "HIST-005",
+  "title": "Payment memory leak over four hours",
+  "service": "payment-service",
+  "category": "memory",
+  "symptoms": "heap climbing 2 percent per minute with long garbage collection pauses",
+  "evidence": [
+   "linear memory growth and no deployment in 24 hours",
+   "GC overhead warnings"
+  ],
+  "confirmed_root_cause": "unbounded ledger cache",
+  "resolution": "rolling restart, cache cap fix scheduled",
+  "remediation_outcome": "memory 48 percent after restart; recurred after 9 days without the fix",
+  "playbook_id": "RB-003",
+  "playbook_version": 1,
+  "resolved_minutes": 18,
+  "access": "engineer",
+  "text": "Payment memory leak over four hours. Symptoms: heap climbing 2 percent per minute with long garbage collection pauses. Evidence: linear memory growth and no deployment in 24 hours; GC overhead warnings. Root cause: unbounded ledger cache. Resolution: rolling restart, cache cap fix scheduled. Outcome: memory 48 percent after restart; recurred after 9 days without the fix."
+ },
+ {
+  "incident_id": "HIST-006",
+  "title": "Report memory spike from a large export",
+  "service": "report-service",
+  "category": "memory",
+  "symptoms": "memory 93 percent during an export job",
+  "evidence": [
+   "spike matched the nightly export",
+   "memory fell when the job ended"
+  ],
+  "confirmed_root_cause": "single large export job that released memory afterwards",
+  "resolution": "no action; export batching tuned",
+  "remediation_outcome": "self-recovered in 11 minutes",
+  "playbook_id": "RB-003",
+  "playbook_version": 1,
+  "resolved_minutes": 11,
+  "access": "engineer",
+  "text": "Report memory spike from a large export. Symptoms: memory 93 percent during an export job. Evidence: spike matched the nightly export; memory fell when the job ended. Root cause: single large export job that released memory afterwards. Resolution: no action; export batching tuned. Outcome: self-recovered in 11 minutes."
+ },
+ {
+  "incident_id": "HIST-007",
+  "title": "Catalog latency from a slow query",
+  "service": "catalog-service",
+  "category": "latency",
+  "symptoms": "p95 latency 3.8 seconds; database queries taking 3 seconds",
+  "evidence": [
+   "slow query log shows a full table scan",
+   "an index was dropped during a migration"
+  ],
+  "confirmed_root_cause": "missing index after a migration",
+  "resolution": "index recreated by the database team; no sandbox action",
+  "remediation_outcome": "p95 back to 250 ms",
+  "playbook_id": "RB-004",
+  "playbook_version": 1,
+  "resolved_minutes": 55,
+  "access": "engineer",
+  "text": "Catalog latency from a slow query. Symptoms: p95 latency 3.8 seconds; database queries taking 3 seconds. Evidence: slow query log shows a full table scan; an index was dropped during a migration. Root cause: missing index after a migration. Resolution: index recreated by the database team; no sandbox action. Outcome: p95 back to 250 ms."
+ },
+ {
+  "incident_id": "HIST-008",
+  "title": "Auth latency caused by cache eviction",
+  "service": "auth-service",
+  "category": "latency",
+  "symptoms": "p95 latency 2 seconds; cache hit ratio dropped",
+  "evidence": [
+   "cache hit ratio fell from 96 percent to 40 percent",
+   "cache memory at its limit"
+  ],
+  "confirmed_root_cause": "cache evictions from a too small memory limit",
+  "resolution": "owner increased the cache memory limit",
+  "remediation_outcome": "latency recovered in 5 minutes",
+  "playbook_id": "RB-004",
+  "playbook_version": 1,
+  "resolved_minutes": 27,
+  "access": "engineer",
+  "text": "Auth latency caused by cache eviction. Symptoms: p95 latency 2 seconds; cache hit ratio dropped. Evidence: cache hit ratio fell from 96 percent to 40 percent; cache memory at its limit. Root cause: cache evictions from a too small memory limit. Resolution: owner increased the cache memory limit. Outcome: latency recovered in 5 minutes."
+ },
+ {
+  "incident_id": "HIST-009",
+  "title": "Inventory crash loop with OOMKilled",
+  "service": "inventory-service",
+  "category": "downtime",
+  "symptoms": "service unavailable; pods restarting repeatedly",
+  "evidence": [
+   "OOMKilled exit code 137 in the logs",
+   "restart count rising"
+  ],
+  "confirmed_root_cause": "memory limit too low after cache growth",
+  "resolution": "restarted the service; owner raised the memory limit",
+  "remediation_outcome": "healthy within 5 minutes",
+  "playbook_id": "RB-005",
+  "playbook_version": 1,
+  "resolved_minutes": 15,
+  "access": "engineer",
+  "text": "Inventory crash loop with OOMKilled. Symptoms: service unavailable; pods restarting repeatedly. Evidence: OOMKilled exit code 137 in the logs; restart count rising. Root cause: memory limit too low after cache growth. Resolution: restarted the service; owner raised the memory limit. Outcome: healthy within 5 minutes."
+ },
+ {
+  "incident_id": "HIST-010",
+  "title": "Notification outage where restart did not help",
+  "service": "notification-service",
+  "category": "downtime",
+  "symptoms": "service unavailable; restart did not restore it",
+  "evidence": [
+   "TLS certificate expired message in the logs",
+   "health check still failing after restart"
+  ],
+  "confirmed_root_cause": "expired certificate",
+  "resolution": "escalated to an administrator who rotated the certificate",
+  "remediation_outcome": "restart failed verification; resolved after rotation in 52 minutes",
+  "playbook_id": "RB-005",
+  "playbook_version": 1,
+  "resolved_minutes": 52,
+  "access": "engineer",
+  "text": "Notification outage where restart did not help. Symptoms: service unavailable; restart did not restore it. Evidence: TLS certificate expired message in the logs; health check still failing after restart. Root cause: expired certificate. Resolution: escalated to an administrator who rotated the certificate. Outcome: restart failed verification; resolved after rotation in 52 minutes."
+ },
+ {
+  "incident_id": "HIST-011",
+  "title": "Payment errors from bank gateway timeouts",
+  "service": "payment-service",
+  "category": "error_rate",
+  "symptoms": "error rate 14 percent and slow responses",
+  "evidence": [
+   "traces show the bank-gateway span taking 6 seconds",
+   "circuit breaker half-open"
+  ],
+  "confirmed_root_cause": "third party bank gateway outage",
+  "resolution": "escalated to the vendor and showed a customer banner",
+  "remediation_outcome": "resolved when the vendor recovered after 38 minutes; no remediation executed",
+  "playbook_id": "RB-006",
+  "playbook_version": 1,
+  "resolved_minutes": 38,
+  "access": "engineer",
+  "text": "Payment errors from bank gateway timeouts. Symptoms: error rate 14 percent and slow responses. Evidence: traces show the bank-gateway span taking 6 seconds; circuit breaker half-open. Root cause: third party bank gateway outage. Resolution: escalated to the vendor and showed a customer banner. Outcome: resolved when the vendor recovered after 38 minutes; no remediation executed."
+ },
+ {
+  "incident_id": "HIST-012",
+  "title": "Shipping latency from the carrier API",
+  "service": "shipping-service",
+  "category": "latency",
+  "symptoms": "p95 latency 4.7 seconds and failed quotes",
+  "evidence": [
+   "carrier-api spans took 4.5 seconds",
+   "a deployment 5 minutes earlier was unrelated"
+  ],
+  "confirmed_root_cause": "carrier API degradation",
+  "resolution": "waited and escalated; no rollback",
+  "remediation_outcome": "recovered in 24 minutes; rollback was not needed",
+  "playbook_id": "RB-006",
+  "playbook_version": 1,
+  "resolved_minutes": 24,
+  "access": "engineer",
+  "text": "Shipping latency from the carrier API. Symptoms: p95 latency 4.7 seconds and failed quotes. Evidence: carrier-api spans took 4.5 seconds; a deployment 5 minutes earlier was unrelated. Root cause: carrier API degradation. Resolution: waited and escalated; no rollback. Outcome: recovered in 24 minutes; rollback was not needed."
+ },
+ {
+  "incident_id": "HIST-013",
+  "title": "Auth latency after a cache TTL change",
+  "service": "auth-service",
+  "category": "latency",
+  "symptoms": "p95 latency 1.8 seconds ten minutes after a configuration change",
+  "evidence": [
+   "config change cache.ttl_seconds 300 to 10",
+   "cache miss ratio 90 percent"
+  ],
+  "confirmed_root_cause": "cache TTL set too low",
+  "resolution": "reverted cache.ttl_seconds to 300",
+  "remediation_outcome": "latency recovered in 3 minutes",
+  "playbook_id": "RB-007",
+  "playbook_version": 1,
+  "resolved_minutes": 9,
+  "access": "engineer",
+  "text": "Auth latency after a cache TTL change. Symptoms: p95 latency 1.8 seconds ten minutes after a configuration change. Evidence: config change cache.ttl_seconds 300 to 10; cache miss ratio 90 percent. Root cause: cache TTL set too low. Resolution: reverted cache.ttl_seconds to 300. Outcome: latency recovered in 3 minutes."
+ },
+ {
+  "incident_id": "HIST-014",
+  "title": "Feature flag caused checkout errors",
+  "service": "checkout-service",
+  "category": "error_rate",
+  "symptoms": "error rate jumped 6 minutes after a flag change",
+  "evidence": [
+   "feature.new_pricing_engine enabled 6 minutes before the errors",
+   "exceptions in the pricing engine"
+  ],
+  "confirmed_root_cause": "bug in the new pricing engine",
+  "resolution": "disabled feature.new_pricing_engine",
+  "remediation_outcome": "errors under 1 percent in 2 minutes",
+  "playbook_id": "RB-007",
+  "playbook_version": 1,
+  "resolved_minutes": 8,
+  "access": "engineer",
+  "text": "Feature flag caused checkout errors. Symptoms: error rate jumped 6 minutes after a flag change. Evidence: feature.new_pricing_engine enabled 6 minutes before the errors; exceptions in the pricing engine. Root cause: bug in the new pricing engine. Resolution: disabled feature.new_pricing_engine. Outcome: errors under 1 percent in 2 minutes."
+ },
+ {
+  "incident_id": "HIST-015",
+  "title": "Gateway alert storm with 80 duplicate alerts",
+  "service": "api-gateway",
+  "category": "cpu",
+  "symptoms": "80 alerts in 20 minutes for the same condition",
+  "evidence": [
+   "same alert every minute from two monitors"
+  ],
+  "confirmed_root_cause": "one CPU saturation reported many times",
+  "resolution": "correlated into one incident and scaled once",
+  "remediation_outcome": "one action instead of 80 pages",
+  "playbook_id": "RB-008",
+  "playbook_version": 1,
+  "resolved_minutes": 16,
+  "access": "engineer",
+  "text": "Gateway alert storm with 80 duplicate alerts. Symptoms: 80 alerts in 20 minutes for the same condition. Evidence: same alert every minute from two monitors. Root cause: one CPU saturation reported many times. Resolution: correlated into one incident and scaled once. Outcome: one action instead of 80 pages."
+ },
+ {
+  "incident_id": "HIST-016",
+  "title": "Flapping monitors created duplicate incidents",
+  "service": "order-service",
+  "category": "latency",
+  "symptoms": "separate incidents for the same latency blips",
+  "evidence": [
+   "monitors had very sensitive thresholds"
+  ],
+  "confirmed_root_cause": "monitor thresholds too sensitive",
+  "resolution": "merged incidents and tuned thresholds",
+  "remediation_outcome": "no infrastructure action",
+  "playbook_id": "RB-008",
+  "playbook_version": 1,
+  "resolved_minutes": 30,
+  "access": "engineer",
+  "text": "Flapping monitors created duplicate incidents. Symptoms: separate incidents for the same latency blips. Evidence: monitors had very sensitive thresholds. Root cause: monitor thresholds too sensitive. Resolution: merged incidents and tuned thresholds. Outcome: no infrastructure action."
+ },
+ {
+  "incident_id": "HIST-017",
+  "title": "Restart did not remove a memory leak",
+  "service": "payment-service",
+  "category": "memory",
+  "symptoms": "memory back above 90 percent ten minutes after a restart",
+  "evidence": [
+   "memory returned to 90 percent in 10 minutes",
+   "same GC warnings as before"
+  ],
+  "confirmed_root_cause": "the leak was still present",
+  "resolution": "verification failed and the incident was escalated for a hotfix",
+  "remediation_outcome": "hotfix deployed the next day",
+  "playbook_id": "RB-009",
+  "playbook_version": 1,
+  "resolved_minutes": 70,
+  "access": "engineer",
+  "text": "Restart did not remove a memory leak. Symptoms: memory back above 90 percent ten minutes after a restart. Evidence: memory returned to 90 percent in 10 minutes; same GC warnings as before. Root cause: the leak was still present. Resolution: verification failed and the incident was escalated for a hotfix. Outcome: hotfix deployed the next day."
+ },
+ {
+  "incident_id": "HIST-018",
+  "title": "Rollback failed verification",
+  "service": "checkout-service",
+  "category": "error_rate",
+  "symptoms": "error rate still 12 percent after rollback",
+  "evidence": [
+   "error rate unchanged after rollback",
+   "previous version failed on the same bad data"
+  ],
+  "confirmed_root_cause": "corrupted promo data",
+  "resolution": "escalated; rolled forward after the data fix",
+  "remediation_outcome": "recovered after the data fix in 63 minutes",
+  "playbook_id": "RB-009",
+  "playbook_version": 1,
+  "resolved_minutes": 63,
+  "access": "engineer",
+  "text": "Rollback failed verification. Symptoms: error rate still 12 percent after rollback. Evidence: error rate unchanged after rollback; previous version failed on the same bad data. Root cause: corrupted promo data. Resolution: escalated; rolled forward after the data fix. Outcome: recovered after the data fix in 63 minutes."
+ },
+ {
+  "incident_id": "HIST-019",
+  "title": "Expired TLS certificate on the mail relay",
+  "service": "notification-service",
+  "category": "downtime",
+  "symptoms": "TLS handshake failures and the service down",
+  "evidence": [
+   "certificate has expired in the logs",
+   "restart did not help"
+  ],
+  "confirmed_root_cause": "certificate was not auto-renewed",
+  "resolution": "administrator rotated the certificate",
+  "remediation_outcome": "healthy after rotation",
+  "playbook_id": "RB-010",
+  "playbook_version": 1,
+  "resolved_minutes": 35,
+  "access": "admin",
+  "text": "Expired TLS certificate on the mail relay. Symptoms: TLS handshake failures and the service down. Evidence: certificate has expired in the logs; restart did not help. Root cause: certificate was not auto-renewed. Resolution: administrator rotated the certificate. Outcome: healthy after rotation."
+ },
+ {
+  "incident_id": "HIST-020",
+  "title": "Rotated secret broke payment calls",
+  "service": "payment-service",
+  "category": "error_rate",
+  "symptoms": "401 responses from the bank gateway after a secret rotation",
+  "evidence": [
+   "401 responses started after the rotation",
+   "stale secret in the configuration"
+  ],
+  "confirmed_root_cause": "stale secret",
+  "resolution": "administrator updated the secret",
+  "remediation_outcome": "recovered in 22 minutes",
+  "playbook_id": "RB-010",
+  "playbook_version": 1,
+  "resolved_minutes": 22,
+  "access": "admin",
+  "text": "Rotated secret broke payment calls. Symptoms: 401 responses from the bank gateway after a secret rotation. Evidence: 401 responses started after the rotation; stale secret in the configuration. Root cause: stale secret. Resolution: administrator updated the secret. Outcome: recovered in 22 minutes."
+ },
+ {
+  "incident_id": "HIST-021",
+  "title": "Telemetry outage hid the evidence",
+  "service": "user-profile-service",
+  "category": "error_rate",
+  "symptoms": "errors rising while the log API returned 503",
+  "evidence": [
+   "log endpoint returned 503",
+   "only metrics were available"
+  ],
+  "confirmed_root_cause": "log pipeline outage",
+  "resolution": "investigated with metrics only and escalated to the observability team",
+  "remediation_outcome": "diagnosis stayed limited; resolved with the pipeline recovery after 47 minutes",
+  "playbook_id": "RB-011",
+  "playbook_version": 1,
+  "resolved_minutes": 47,
+  "access": "engineer",
+  "text": "Telemetry outage hid the evidence. Symptoms: errors rising while the log API returned 503. Evidence: log endpoint returned 503; only metrics were available. Root cause: log pipeline outage. Resolution: investigated with metrics only and escalated to the observability team. Outcome: diagnosis stayed limited; resolved with the pipeline recovery after 47 minutes."
+ },
+ {
+  "incident_id": "HIST-022",
+  "title": "Metrics gap looked like downtime",
+  "service": "report-service",
+  "category": "downtime",
+  "symptoms": "availability gap while requests still succeeded",
+  "evidence": [
+   "access logs show successful requests during the gap"
+  ],
+  "confirmed_root_cause": "metrics agent crashed",
+  "resolution": "restarted the metrics agent; no service impact",
+  "remediation_outcome": "false alarm",
+  "playbook_id": "RB-011",
+  "playbook_version": 1,
+  "resolved_minutes": 20,
+  "access": "engineer",
+  "text": "Metrics gap looked like downtime. Symptoms: availability gap while requests still succeeded. Evidence: access logs show successful requests during the gap. Root cause: metrics agent crashed. Resolution: restarted the metrics agent; no service impact. Outcome: false alarm."
+ },
+ {
+  "incident_id": "HIST-023",
+  "title": "Order latency from pool exhaustion",
+  "service": "order-service",
+  "category": "latency",
+  "symptoms": "p95 latency 5 seconds; pool timeouts",
+  "evidence": [
+   "connection pool at 20 of 20",
+   "no slow queries"
+  ],
+  "confirmed_root_cause": "pool too small for the traffic",
+  "resolution": "raised db.pool.max_connections from 20 to 60",
+  "remediation_outcome": "p95 300 ms in 4 minutes",
+  "playbook_id": "RB-012",
+  "playbook_version": 1,
+  "resolved_minutes": 10,
+  "access": "engineer",
+  "text": "Order latency from pool exhaustion. Symptoms: p95 latency 5 seconds; pool timeouts. Evidence: connection pool at 20 of 20; no slow queries. Root cause: pool too small for the traffic. Resolution: raised db.pool.max_connections from 20 to 60. Outcome: p95 300 ms in 4 minutes."
+ },
+ {
+  "incident_id": "HIST-024",
+  "title": "Pool increase overloaded the database",
+  "service": "inventory-service",
+  "category": "latency",
+  "symptoms": "database CPU 95 percent after the pool was raised",
+  "evidence": [
+   "pool raised to 200",
+   "database CPU rose right after"
+  ],
+  "confirmed_root_cause": "pool increase exceeded database capacity",
+  "resolution": "reduced to 80 and optimized queries",
+  "remediation_outcome": "stable after tuning",
+  "playbook_id": "RB-012",
+  "playbook_version": 1,
+  "resolved_minutes": 48,
+  "access": "engineer",
+  "text": "Pool increase overloaded the database. Symptoms: database CPU 95 percent after the pool was raised. Evidence: pool raised to 200; database CPU rose right after. Root cause: pool increase exceeded database capacity. Resolution: reduced to 80 and optimized queries. Outcome: stable after tuning."
+ },
+ {
+  "incident_id": "HIST-025",
+  "title": "Report latency blips every 8 minutes",
+  "service": "report-service",
+  "category": "latency",
+  "symptoms": "latency spikes of 2 minutes that recover on their own",
+  "evidence": [
+   "spikes aligned with the export scheduler",
+   "no errors during spikes"
+  ],
+  "confirmed_root_cause": "scheduled batch export",
+  "resolution": "no action; alert threshold changed to require 5 minutes",
+  "remediation_outcome": "alert noise reduced",
+  "playbook_id": "RB-013",
+  "playbook_version": 1,
+  "resolved_minutes": 25,
+  "access": "engineer",
+  "text": "Report latency blips every 8 minutes. Symptoms: latency spikes of 2 minutes that recover on their own. Evidence: spikes aligned with the export scheduler; no errors during spikes. Root cause: scheduled batch export. Resolution: no action; alert threshold changed to require 5 minutes. Outcome: alert noise reduced."
+ },
+ {
+  "incident_id": "HIST-026",
+  "title": "Flapping CPU alert on search",
+  "service": "search-service",
+  "category": "cpu",
+  "symptoms": "cpu crossing 80 percent for 1 minute at a time",
+  "evidence": [
+   "a nightly reindex job ran at the same times"
+  ],
+  "confirmed_root_cause": "scheduled reindex job",
+  "resolution": "no action; alert sustain period extended",
+  "remediation_outcome": "noise reduced",
+  "playbook_id": "RB-013",
+  "playbook_version": 1,
+  "resolved_minutes": 15,
+  "access": "engineer",
+  "text": "Flapping CPU alert on search. Symptoms: cpu crossing 80 percent for 1 minute at a time. Evidence: a nightly reindex job ran at the same times. Root cause: scheduled reindex job. Resolution: no action; alert sustain period extended. Outcome: noise reduced."
+ }
+]

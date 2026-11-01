@@ -1,0 +1,69 @@
+{
+ "scenarios": 12,
+ "alerts": 215,
+ "alert_types": {
+  "latency": 91,
+  "cpu": 61,
+  "error_rate": 40,
+  "downtime": 12,
+  "memory": 11
+ },
+ "severities": {
+  "high": 105,
+  "medium": 98,
+  "critical": 12
+ },
+ "logs": 1165,
+ "log_levels": {
+  "WARN": 497,
+  "ERROR": 455,
+  "INFO": 213
+ },
+ "metric_rows": 720,
+ "trace_spans": 200,
+ "traces": 96,
+ "deployments": 31,
+ "config_events": 2,
+ "runbook_files": 14,
+ "runbook_ids": 13,
+ "resolved_incidents": 26,
+ "rag_queries": 41,
+ "rag_kinds": {
+  "semantic": 24,
+  "ambiguous": 3,
+  "keyword": 4,
+  "authorization": 4,
+  "version": 1,
+  "injection": 1,
+  "out_of_scope": 3,
+  "coverage_gap": 1
+ },
+ "services": 12,
+ "expected_incidents": 16,
+ "per_scenario_alerts": {
+  "S01": 13,
+  "S02": 4,
+  "S03": 11,
+  "S04": 10,
+  "S05": 18,
+  "S06": 13,
+  "S07": 6,
+  "S08": 106,
+  "S09": 13,
+  "S10": 3,
+  "S11": 6,
+  "S12": 12
+ },
+ "sensitive_log_lines": 35,
+ "injection_log_lines": 1,
+ "categories": {
+  "deployment_regression": 1,
+  "resource_exhaustion": 2,
+  "capacity_config": 2,
+  "availability": 2,
+  "dependency_outage": 2,
+  "alert_storm": 1,
+  "noise": 1,
+  "observability_outage": 1
+ }
+}

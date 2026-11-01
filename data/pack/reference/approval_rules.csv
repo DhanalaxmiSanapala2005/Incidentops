@@ -1,0 +1,5 @@
+operation,approver_role,expires_minutes,separation_of_duties,parameter_limits
+restart,engineer,30,optional,service must be a sandbox service
+rollback,engineer,30,optional,target_version must exist in the deployment history
+scale,engineer,30,optional,replicas integer 1 to 10
+config_change,engineer,30,optional,key in allowlist; db.pool.max_connections 5 to 200; cache.ttl_seconds 1 to 3600; feature.new_pricing_engine boolean

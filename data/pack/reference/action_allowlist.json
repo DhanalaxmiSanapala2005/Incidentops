@@ -1,0 +1,15 @@
+{
+ "operations": [
+  "restart",
+  "rollback",
+  "scale",
+  "config_change"
+ ],
+ "config_keys": {
+  "feature.new_pricing_engine": "boolean",
+  "cache.ttl_seconds": "integer 1-3600",
+  "db.pool.max_connections": "integer 5-200"
+ },
+ "never_allowed": "any shell command, any non-sandbox service, any other operation",
+ "requires_approval": true
+}

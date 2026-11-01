@@ -1,0 +1,516 @@
+{
+ "info": {
+  "name": "IncidentOps AI",
+  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+ },
+ "item": [
+  {
+   "name": "Login",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/auth/login",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "auth",
+      "login"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n \"username\": \"engineer\",\n \"password\": \"engineer123\"\n}"
+    }
+   },
+   "event": [
+    {
+     "listen": "test",
+     "script": {
+      "exec": [
+       "pm.collectionVariables.set('token', pm.response.json().access_token);"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "Inject scenario s03",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer {{token}}"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/scenarios/s03/inject",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "scenarios",
+      "s03",
+      "inject"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Ingest alert",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer {{token}}"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/alerts",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "alerts"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n \"service\": \"payment-api\",\n \"metric\": \"cpu\",\n \"value\": 96\n}"
+    }
+   }
+  },
+  {
+   "name": "List incidents",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer {{token}}"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/incidents",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "incidents"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Get incident",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer {{token}}"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/incidents/1",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "incidents",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Investigate",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer {{token}}"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/incidents/1/investigate",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "incidents",
+      "1",
+      "investigate"
+     ]
+    }
+   }
+  },
+  {
+   "name": "List pending actions",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer {{token}}"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/actions?status=pending",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "actions?status=pending"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Approve action",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer {{token}}"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/actions/1/approve",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "actions",
+      "1",
+      "approve"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n \"comment\": \"approved\"\n}"
+    }
+   }
+  },
+  {
+   "name": "Reject action",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer {{token}}"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/actions/1/reject",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "actions",
+      "1",
+      "reject"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n \"comment\": \"rejected\"\n}"
+    }
+   }
+  },
+  {
+   "name": "Incident report",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer {{token}}"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/incidents/1/report",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "incidents",
+      "1",
+      "report"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Dashboard",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer {{token}}"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/dashboard",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "dashboard"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Import requirements",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer {{token}}"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/import/requirements",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "import",
+      "requirements"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Load SOC sample (real_alerts)",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer {{token}}"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/import/sample/soc_real",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "import",
+      "sample",
+      "soc_real"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Investigate (background)",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer {{token}}"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/incidents/1/investigate/async",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "incidents",
+      "1",
+      "investigate",
+      "async"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Latest workflow run",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer {{token}}"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/incidents/1/run",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "incidents",
+      "1",
+      "run"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Ask the assistant",
+   "request": {
+    "method": "POST",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer {{token}}"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/chat",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "chat"
+     ]
+    },
+    "body": {
+     "mode": "raw",
+     "raw": "{\n \"message\": \"Why did this happen?\",\n \"incident_id\": 1\n}"
+    }
+   }
+  },
+  {
+   "name": "Assistant history",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer {{token}}"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/chat/history?incident_id=1",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "chat",
+      "history?incident_id=1"
+     ]
+    }
+   }
+  },
+  {
+   "name": "Audit log (admin)",
+   "request": {
+    "method": "GET",
+    "header": [
+     {
+      "key": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "key": "Authorization",
+      "value": "Bearer {{token}}"
+     }
+    ],
+    "url": {
+     "raw": "{{base}}/admin/audit",
+     "host": [
+      "{{base}}"
+     ],
+     "path": [
+      "admin",
+      "audit"
+     ]
+    }
+   }
+  }
+ ],
+ "variable": [
+  {
+   "key": "base",
+   "value": "http://localhost:8000"
+  },
+  {
+   "key": "token",
+   "value": ""
+  }
+ ]
+}

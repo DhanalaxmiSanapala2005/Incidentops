@@ -1,0 +1,268 @@
+[
+ {
+  "doc_id": "INC-104",
+  "version": 1,
+  "title": "Payment DB pool exhaustion after deploy",
+  "access": "engineer",
+  "text": "Latency and errors after deployment, db connection timeout, pool exhausted. Resolved by rolling back to the previous version. Pool recovered within 3 minutes."
+ },
+ {
+  "doc_id": "INC-087",
+  "version": 1,
+  "title": "Search OOM",
+  "access": "engineer",
+  "text": "OutOfMemoryError heap usage above 95 percent. Resolved by restart; leak ticketed."
+ },
+ {
+  "doc_id": "INC-092",
+  "version": 1,
+  "title": "Worker CPU saturation",
+  "access": "engineer",
+  "text": "CPU 97 percent with queue depth growing and no deployment. Resolved by scaling from 2 to 4 replicas."
+ },
+ {
+  "doc_id": "INC-071",
+  "version": 1,
+  "title": "Pricing NPE behind feature flag",
+  "access": "engineer",
+  "text": "NullPointerException with feature flag enabled caused 5xx errors. Resolved by disabling the feature flag."
+ },
+ {
+  "doc_id": "INC-S01a",
+  "version": 1,
+  "title": "Impossible Travel Activity Detected (synthetic confirmed incident)",
+  "access": "engineer",
+  "text": "Symptoms matched the playbook: This alert fires when the same user account signs in from two locations that are too far apart to have been reached through normal travel in the time between th Confirmed true positive after checking Previous authentication. Resolution: Revoke active sessions and force MFA re-registration for the affected account (simulated; not yet automated in the sandbox). Outcome: contained. Playbook soc_impossible_travel_activity_detected v1."
+ },
+ {
+  "doc_id": "INC-S01b",
+  "version": 1,
+  "title": "Impossible Travel Activity Detected (synthetic benign incident)",
+  "access": "engineer",
+  "text": "Same alert fired but the user, device and IP matched known benign activity (for example travel or an approved tool). Closed as false positive after playbook checks. Playbook soc_impossible_travel_activity_detected v1."
+ },
+ {
+  "doc_id": "INC-S02a",
+  "version": 1,
+  "title": "Malware Detected and Blocked on Endpoint (synthetic confirmed incident)",
+  "access": "engineer",
+  "text": "Symptoms matched the playbook: This alert fires when the antimalware engine on a managed device detects and quarantines a file that matches a known or suspected malware signature. The goal of Confirmed true positive after checking Malware type. Resolution: Isolate the endpoint from the network and run a full scan (simulated; not yet automated in the sandbox). Outcome: contained. Playbook soc_malware_detected_and_blocked_on_endpoint v1."
+ },
+ {
+  "doc_id": "INC-S02b",
+  "version": 1,
+  "title": "Malware Detected and Blocked on Endpoint (synthetic benign incident)",
+  "access": "engineer",
+  "text": "Same alert fired but the user, device and IP matched known benign activity (for example travel or an approved tool). Closed as false positive after playbook checks. Playbook soc_malware_detected_and_blocked_on_endpoint v1."
+ },
+ {
+  "doc_id": "INC-S03a",
+  "version": 1,
+  "title": "Suspicious Inbox Forwarding Rule Created (synthetic confirmed incident)",
+  "access": "engineer",
+  "text": "Symptoms matched the playbook: This alert fires when a mailbox rule is created that automatically forwards or redirects incoming mail, which is one of the most common ways attackers maintain  Confirmed true positive after checking User account & forwarded account info. Resolution: Purge the message from mailboxes, block the sender or URL and remove malicious mailbox rules (simulated). Outcome: contained. Playbook soc_suspicious_inbox_forwarding_rule_created v1."
+ },
+ {
+  "doc_id": "INC-S03b",
+  "version": 1,
+  "title": "Suspicious Inbox Forwarding Rule Created (synthetic benign incident)",
+  "access": "engineer",
+  "text": "Same alert fired but the user, device and IP matched known benign activity (for example travel or an approved tool). Closed as false positive after playbook checks. Playbook soc_suspicious_inbox_forwarding_rule_created v1."
+ },
+ {
+  "doc_id": "INC-S04a",
+  "version": 1,
+  "title": "Malicious URL Click Detected (synthetic confirmed incident)",
+  "access": "engineer",
+  "text": "Symptoms matched the playbook: This alert fires when a user clicks a link in an email that has been identified as malicious, either at the time of delivery or after the fact. The investigatio Confirmed true positive after checking ZAP \u2192 Quarantine. Resolution: Purge the message from mailboxes, block the sender or URL and remove malicious mailbox rules (simulated). Outcome: contained. Playbook soc_malicious_url_click_detected v1."
+ },
+ {
+  "doc_id": "INC-S04b",
+  "version": 1,
+  "title": "Malicious URL Click Detected (synthetic benign incident)",
+  "access": "engineer",
+  "text": "Same alert fired but the user, device and IP matched known benign activity (for example travel or an approved tool). Closed as false positive after playbook checks. Playbook soc_malicious_url_click_detected v1."
+ },
+ {
+  "doc_id": "INC-S05a",
+  "version": 1,
+  "title": "Malicious File Detected in Email Attachment (synthetic confirmed incident)",
+  "access": "engineer",
+  "text": "Symptoms matched the playbook: This alert fires when an attachment in an email is flagged as malicious, either through signature matching or sandbox detonation. The investigation follows the  Confirmed true positive after checking ZAP \u2192 Quarantine. Resolution: Isolate the endpoint from the network and run a full scan (simulated; not yet automated in the sandbox). Outcome: contained. Playbook soc_malicious_file_detected_in_email_attachm v1."
+ },
+ {
+  "doc_id": "INC-S05b",
+  "version": 1,
+  "title": "Malicious File Detected in Email Attachment (synthetic benign incident)",
+  "access": "engineer",
+  "text": "Same alert fired but the user, device and IP matched known benign activity (for example travel or an approved tool). Closed as false positive after playbook checks. Playbook soc_malicious_file_detected_in_email_attachm v1."
+ },
+ {
+  "doc_id": "INC-S06a",
+  "version": 1,
+  "title": "Credential Phishing (synthetic confirmed incident)",
+  "access": "engineer",
+  "text": "Symptoms matched the playbook: This alert fires when a user receives an email containing a link to a fake login page designed to steal their password. The investigation focuses on confirming  Confirmed true positive after checking Sender and link reputation. Resolution: Revoke active sessions and force MFA re-registration for the affected account (simulated; not yet automated in the sandbox). Outcome: contained. Playbook soc_credential_phishing v1."
+ },
+ {
+  "doc_id": "INC-S06b",
+  "version": 1,
+  "title": "Credential Phishing (synthetic benign incident)",
+  "access": "engineer",
+  "text": "Same alert fired but the user, device and IP matched known benign activity (for example travel or an approved tool). Closed as false positive after playbook checks. Playbook soc_credential_phishing v1."
+ },
+ {
+  "doc_id": "INC-S07a",
+  "version": 1,
+  "title": "Email Spoofing (synthetic confirmed incident)",
+  "access": "engineer",
+  "text": "Symptoms matched the playbook: This alert fires when an email is crafted to appear as though it came from someone it didn't, often failing SPF, DKIM, or DMARC checks. The investigation focuse Confirmed true positive after checking Authentication results. Resolution: Purge the message from mailboxes, block the sender or URL and remove malicious mailbox rules (simulated). Outcome: contained. Playbook soc_email_spoofing v1."
+ },
+ {
+  "doc_id": "INC-S07b",
+  "version": 1,
+  "title": "Email Spoofing (synthetic benign incident)",
+  "access": "engineer",
+  "text": "Same alert fired but the user, device and IP matched known benign activity (for example travel or an approved tool). Closed as false positive after playbook checks. Playbook soc_email_spoofing v1."
+ },
+ {
+  "doc_id": "INC-S08a",
+  "version": 1,
+  "title": "Remote File Inclusion (RFI) (synthetic confirmed incident)",
+  "access": "engineer",
+  "text": "Symptoms matched the playbook: This alert fires when a web application is manipulated into loading and executing a remote file through a vulnerable include parameter, potentially handing an a Confirmed true positive after checking Trigger confirmation. Resolution: Apply a WAF rule or block the abusive source and ask the application owner to patch (simulated). Outcome: contained. Playbook soc_remote_file_inclusion_rfi v1."
+ },
+ {
+  "doc_id": "INC-S08b",
+  "version": 1,
+  "title": "Remote File Inclusion (RFI) (synthetic benign incident)",
+  "access": "engineer",
+  "text": "Same alert fired but the user, device and IP matched known benign activity (for example travel or an approved tool). Closed as false positive after playbook checks. Playbook soc_remote_file_inclusion_rfi v1."
+ },
+ {
+  "doc_id": "INC-S09a",
+  "version": 1,
+  "title": "Open Redirect (synthetic confirmed incident)",
+  "access": "engineer",
+  "text": "Symptoms matched the playbook: This alert fires when a redirect parameter on a trusted site can be manipulated to send users to an attacker-controlled URL, often used to add legitimacy to a p Confirmed true positive after checking Parameter check. Resolution: Apply a WAF rule or block the abusive source and ask the application owner to patch (simulated). Outcome: contained. Playbook soc_open_redirect v1."
+ },
+ {
+  "doc_id": "INC-S09b",
+  "version": 1,
+  "title": "Open Redirect (synthetic benign incident)",
+  "access": "engineer",
+  "text": "Same alert fired but the user, device and IP matched known benign activity (for example travel or an approved tool). Closed as false positive after playbook checks. Playbook soc_open_redirect v1."
+ },
+ {
+  "doc_id": "INC-S10a",
+  "version": 1,
+  "title": "Print-Based Exfiltration (synthetic confirmed incident)",
+  "access": "engineer",
+  "text": "Symptoms matched the playbook: This alert fires when sensitive documents are printed in a pattern consistent with physical removal rather than normal business use. The investigation focuses o Confirmed true positive after checking Volume and content. Resolution: Suspend the user's access to the data source and notify the data owner (simulated). Outcome: contained. Playbook soc_print_based_exfiltration v1."
+ },
+ {
+  "doc_id": "INC-S10b",
+  "version": 1,
+  "title": "Print-Based Exfiltration (synthetic benign incident)",
+  "access": "engineer",
+  "text": "Same alert fired but the user, device and IP matched known benign activity (for example travel or an approved tool). Closed as false positive after playbook checks. Playbook soc_print_based_exfiltration v1."
+ },
+ {
+  "doc_id": "INC-S11a",
+  "version": 1,
+  "title": "Database Mass Export (synthetic confirmed incident)",
+  "access": "engineer",
+  "text": "Symptoms matched the playbook: This alert fires when an insider runs an unusually large query or export against a production database, often pulling far more data than their role would normal Confirmed true positive after checking Scope and content. Resolution: Suspend the user's access to the data source and notify the data owner (simulated). Outcome: contained. Playbook soc_database_mass_export v1."
+ },
+ {
+  "doc_id": "INC-S11b",
+  "version": 1,
+  "title": "Database Mass Export (synthetic benign incident)",
+  "access": "engineer",
+  "text": "Same alert fired but the user, device and IP matched known benign activity (for example travel or an approved tool). Closed as false positive after playbook checks. Playbook soc_database_mass_export v1."
+ },
+ {
+  "doc_id": "INC-S12a",
+  "version": 1,
+  "title": "Mobile Malware (Android/iOS) (synthetic confirmed incident)",
+  "access": "engineer",
+  "text": "Symptoms matched the playbook: This alert fires when a malicious app is installed on a managed mobile device, typically through sideloading or a malicious app store listing. The investigation Confirmed true positive after checking Detection source and app identity. Resolution: Isolate the endpoint from the network and run a full scan (simulated; not yet automated in the sandbox). Outcome: contained. Playbook soc_mobile_malware_android_ios v1."
+ },
+ {
+  "doc_id": "INC-S12b",
+  "version": 1,
+  "title": "Mobile Malware (Android/iOS) (synthetic benign incident)",
+  "access": "engineer",
+  "text": "Same alert fired but the user, device and IP matched known benign activity (for example travel or an approved tool). Closed as false positive after playbook checks. Playbook soc_mobile_malware_android_ios v1."
+ },
+ {
+  "doc_id": "INC-S13a",
+  "version": 1,
+  "title": "Quantum 'Harvest Now, Decrypt Later' (synthetic confirmed incident)",
+  "access": "engineer",
+  "text": "Symptoms matched the playbook: This alert fires when encrypted traffic is captured by a source with characteristics suggesting long-term storage rather than real-time interception \u2014 consisten Confirmed true positive after checking Source characterization. Resolution: Suspend the user's access to the data source and notify the data owner (simulated). Outcome: contained. Playbook soc_quantum_harvest_now_decrypt_later v1."
+ },
+ {
+  "doc_id": "INC-S13b",
+  "version": 1,
+  "title": "Quantum 'Harvest Now, Decrypt Later' (synthetic benign incident)",
+  "access": "engineer",
+  "text": "Same alert fired but the user, device and IP matched known benign activity (for example travel or an approved tool). Closed as false positive after playbook checks. Playbook soc_quantum_harvest_now_decrypt_later v1."
+ },
+ {
+  "doc_id": "INC-S14a",
+  "version": 1,
+  "title": "Service Account Token Abuse (K8s/Cloud) (synthetic confirmed incident)",
+  "access": "engineer",
+  "text": "Symptoms matched the playbook: This alert fires when an attacker steals a service account's JWT or token from a pod or instance metadata service, using it to gain broader cluster or cloud acc Confirmed true positive after checking Origin of access. Resolution: Revoke active sessions and force MFA re-registration for the affected account (simulated; not yet automated in the sandbox). Outcome: contained. Playbook soc_service_account_token_abuse_k8s_cloud v1."
+ },
+ {
+  "doc_id": "INC-S14b",
+  "version": 1,
+  "title": "Service Account Token Abuse (K8s/Cloud) (synthetic benign incident)",
+  "access": "engineer",
+  "text": "Same alert fired but the user, device and IP matched known benign activity (for example travel or an approved tool). Closed as false positive after playbook checks. Playbook soc_service_account_token_abuse_k8s_cloud v1."
+ },
+ {
+  "doc_id": "INC-S15a",
+  "version": 1,
+  "title": "Calendar / Meeting Invite Phishing (synthetic confirmed incident)",
+  "access": "engineer",
+  "text": "Symptoms matched the playbook: This alert fires when a phishing attempt arrives as a calendar invite rather than an email \u2014 a format that in some mail clients gets auto-accepted, giving the m Confirmed true positive after checking Sender and invite legitimacy. Resolution: Purge the message from mailboxes, block the sender or URL and remove malicious mailbox rules (simulated). Outcome: contained. Playbook soc_calendar_meeting_invite_phishing v1."
+ },
+ {
+  "doc_id": "INC-S15b",
+  "version": 1,
+  "title": "Calendar / Meeting Invite Phishing (synthetic benign incident)",
+  "access": "engineer",
+  "text": "Same alert fired but the user, device and IP matched known benign activity (for example travel or an approved tool). Closed as false positive after playbook checks. Playbook soc_calendar_meeting_invite_phishing v1."
+ },
+ {
+  "doc_id": "INC-S16a",
+  "version": 1,
+  "title": "DNS / Subdomain Enumeration (synthetic confirmed incident)",
+  "access": "engineer",
+  "text": "Symptoms matched the playbook: This alert fires when DNS query patterns suggest an attacker is systematically enumerating subdomains, typically searching for forgotten or weakly secured asset Confirmed true positive after checking Query pattern. Resolution: Apply a WAF rule or block the abusive source and ask the application owner to patch (simulated). Outcome: contained. Playbook soc_dns_subdomain_enumeration v1."
+ },
+ {
+  "doc_id": "INC-S16b",
+  "version": 1,
+  "title": "DNS / Subdomain Enumeration (synthetic benign incident)",
+  "access": "engineer",
+  "text": "Same alert fired but the user, device and IP matched known benign activity (for example travel or an approved tool). Closed as false positive after playbook checks. Playbook soc_dns_subdomain_enumeration v1."
+ },
+ {
+  "doc_id": "INC-S17a",
+  "version": 1,
+  "title": "Click-Jacking / UI Redress (synthetic confirmed incident)",
+  "access": "engineer",
+  "text": "Symptoms matched the playbook: This alert fires when an attacker embeds a site in a hidden or transparent iframe on their own page, tricking users into clicking on something they didn't inten Confirmed true positive after checking Embedding confirmation. Resolution: Apply a WAF rule or block the abusive source and ask the application owner to patch (simulated). Outcome: contained. Playbook soc_click_jacking_ui_redress v1."
+ },
+ {
+  "doc_id": "INC-S17b",
+  "version": 1,
+  "title": "Click-Jacking / UI Redress (synthetic benign incident)",
+  "access": "engineer",
+  "text": "Same alert fired but the user, device and IP matched known benign activity (for example travel or an approved tool). Closed as false positive after playbook checks. Playbook soc_click_jacking_ui_redress v1."
+ }
+]

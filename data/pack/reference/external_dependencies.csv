@@ -1,0 +1,6 @@
+name,kind
+bank-gateway,external
+carrier-api,external
+postgres-primary,external
+redis-cache,external
+smtp-relay,external

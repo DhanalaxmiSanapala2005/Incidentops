@@ -1,0 +1,32 @@
+deployment_id,service_name,version,previous_version,timestamp,change_type,change_summary,deployed_by,outcome
+DEP-0001,api-gateway,v4.2.4,v4.2.3,2026-09-20T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0002,auth-service,v2.7.2,v2.7.1,2026-09-20T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0003,checkout-service,v2.13.1,v2.13.0,2026-09-20T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0004,payment-service,v3.8.1,v3.8.0,2026-09-20T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0005,order-service,v5.0.1,v5.0.0,2026-09-20T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0006,inventory-service,v4.0.2,v4.0.1,2026-09-20T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0007,search-service,v6.1.1,v6.1.0,2026-09-20T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0008,catalog-service,v1.14.3,v1.14.2,2026-09-20T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0009,notification-service,v2.3.5,v2.3.4,2026-09-20T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0010,report-service,v1.2.1,v1.2.0,2026-09-20T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0011,user-profile-service,v3.0.6,v3.0.5,2026-09-20T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0012,shipping-service,v1.8.1,v1.8.0,2026-09-20T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0013,api-gateway,v4.2.5,v4.2.4,2026-09-27T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0014,auth-service,v2.7.3,v2.7.2,2026-09-27T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0015,checkout-service,v2.13.2,v2.13.1,2026-09-27T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0016,payment-service,v3.8.2,v3.8.1,2026-09-27T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0017,order-service,v5.0.2,v5.0.1,2026-09-27T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0018,inventory-service,v4.0.3,v4.0.2,2026-09-27T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0019,search-service,v6.1.2,v6.1.1,2026-09-27T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0020,catalog-service,v1.14.4,v1.14.3,2026-09-27T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0021,notification-service,v2.3.6,v2.3.5,2026-09-27T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0022,report-service,v1.2.2,v1.2.1,2026-09-27T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0023,user-profile-service,v3.0.7,v3.0.6,2026-09-27T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0024,shipping-service,v1.8.2,v1.8.1,2026-09-27T10:00:00Z,deploy,Routine release,ci-bot,success
+DEP-0025,payment-service,v3.8.3,v3.8.2,2026-09-29T11:00:00Z,deploy,Minor dependency update,ci-bot,success
+DEP-0026,checkout-service,v2.14.0,v2.13.2,2026-10-01T08:26:00Z,deploy,Release adds promo code validation,ci-bot,success
+DEP-0027,report-service,v1.2.3,v1.2.2,2026-10-01T08:28:00Z,deploy,Report layout fix,ci-bot,success
+DEP-0028,order-service,v5.1.0,v5.0.2,2026-10-02T09:00:00Z,deploy,Schema migration for order history,ci-bot,success
+DEP-0029,inventory-service,v4.0.3,v4.0.3,2026-10-04T12:00:00Z,config,Cache size increased from 256 to 512 entries,owner,success
+DEP-0030,auth-service,v2.7.3,v2.7.3,2026-10-07T10:28:00Z,config,cache.ttl_seconds changed from 300 to 1,deploy-bot,success
+DEP-0031,shipping-service,v1.9.0,v1.8.2,2026-10-12T09:25:00Z,deploy,Minor UI wording change in rate responses,ci-bot,success

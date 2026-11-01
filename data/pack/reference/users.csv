@@ -1,0 +1,5 @@
+username,role,note
+admin,admin,demo account
+engineer,engineer,demo account
+engineer2,engineer,second approver for separation of duties tests
+viewer,viewer,read only

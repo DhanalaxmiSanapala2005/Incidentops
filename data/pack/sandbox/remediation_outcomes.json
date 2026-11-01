@@ -1,0 +1,340 @@
+{
+ "S01": [
+  {
+   "operation": "rollback",
+   "parameters": {
+    "service": "checkout-service",
+    "target_version": "v2.13.2"
+   },
+   "result": "success",
+   "note": "errors disappear",
+   "health_after": {
+    "cpu_pct": 35,
+    "memory_pct": 55,
+    "latency_p95_ms": 220,
+    "error_rate_pct": 0.4,
+    "availability_pct": 100,
+    "request_rate_rps": 120
+   }
+  },
+  {
+   "operation": "restart",
+   "parameters": {
+    "service": "checkout-service"
+   },
+   "result": "no_effect",
+   "note": "the bug is in the code, errors continue",
+   "health_after": {
+    "cpu_pct": 36.15,
+    "memory_pct": 56.48,
+    "latency_p95_ms": 3265.3,
+    "error_rate_pct": 26.86,
+    "availability_pct": 100,
+    "request_rate_rps": 122.23
+   }
+  }
+ ],
+ "S02": [
+  {
+   "operation": "restart",
+   "parameters": {
+    "service": "payment-service"
+   },
+   "result": "success",
+   "note": "memory released; the leak may return",
+   "health_after": {
+    "cpu_pct": 35,
+    "memory_pct": 55,
+    "latency_p95_ms": 220,
+    "error_rate_pct": 0.4,
+    "availability_pct": 100,
+    "request_rate_rps": 120
+   }
+  }
+ ],
+ "S03": [
+  {
+   "operation": "scale",
+   "parameters": {
+    "service": "search-service",
+    "replicas": 6
+   },
+   "result": "success",
+   "note": "cpu falls below 60 percent",
+   "health_after": {
+    "cpu_pct": 35,
+    "memory_pct": 55,
+    "latency_p95_ms": 220,
+    "error_rate_pct": 0.4,
+    "availability_pct": 100,
+    "request_rate_rps": 120
+   }
+  },
+  {
+   "operation": "restart",
+   "parameters": {
+    "service": "search-service"
+   },
+   "result": "partial",
+   "note": "brief relief, saturation returns",
+   "health_after": {
+    "cpu_pct": 66.52,
+    "memory_pct": 54.29,
+    "latency_p95_ms": 848.37,
+    "error_rate_pct": 0.41,
+    "availability_pct": 100.0,
+    "request_rate_rps": 249.94
+   }
+  }
+ ],
+ "S04": [
+  {
+   "operation": "config_change",
+   "parameters": {
+    "service": "order-service",
+    "key": "db.pool.max_connections",
+    "value": 60
+   },
+   "result": "success",
+   "note": "latency returns to baseline",
+   "health_after": {
+    "cpu_pct": 35,
+    "memory_pct": 55,
+    "latency_p95_ms": 220,
+    "error_rate_pct": 0.4,
+    "availability_pct": 100,
+    "request_rate_rps": 120
+   }
+  },
+  {
+   "operation": "restart",
+   "parameters": {
+    "service": "order-service"
+   },
+   "result": "no_effect",
+   "note": "pool fills again",
+   "health_after": {
+    "cpu_pct": 35.55,
+    "memory_pct": 55.77,
+    "latency_p95_ms": 5151.76,
+    "error_rate_pct": 6.06,
+    "availability_pct": 100,
+    "request_rate_rps": 115.87
+   }
+  }
+ ],
+ "S05": [
+  {
+   "operation": "restart",
+   "parameters": {
+    "service": "inventory-service"
+   },
+   "result": "success",
+   "note": "service healthy again",
+   "health_after": {
+    "cpu_pct": 35,
+    "memory_pct": 55,
+    "latency_p95_ms": 220,
+    "error_rate_pct": 0.4,
+    "availability_pct": 100,
+    "request_rate_rps": 120
+   }
+  }
+ ],
+ "S06": [
+  {
+   "operation": "restart",
+   "parameters": {
+    "service": "payment-service"
+   },
+   "result": "no_effect",
+   "note": "the outage is outside the service",
+   "health_after": {
+    "cpu_pct": 34.92,
+    "memory_pct": 53.97,
+    "latency_p95_ms": 6527.85,
+    "error_rate_pct": 13.73,
+    "availability_pct": 100,
+    "request_rate_rps": 119.07
+   }
+  },
+  {
+   "operation": "rollback",
+   "parameters": {
+    "service": "payment-service",
+    "target_version": "v3.8.2"
+   },
+   "result": "no_effect",
+   "note": "no change in behaviour",
+   "health_after": {
+    "cpu_pct": 34.92,
+    "memory_pct": 53.97,
+    "latency_p95_ms": 6527.85,
+    "error_rate_pct": 13.73,
+    "availability_pct": 100,
+    "request_rate_rps": 119.07
+   }
+  }
+ ],
+ "S07": [
+  {
+   "operation": "config_change",
+   "parameters": {
+    "service": "auth-service",
+    "key": "cache.ttl_seconds",
+    "value": 300
+   },
+   "result": "success",
+   "note": "cache hit ratio recovers",
+   "health_after": {
+    "cpu_pct": 35,
+    "memory_pct": 55,
+    "latency_p95_ms": 200,
+    "error_rate_pct": 0.4,
+    "availability_pct": 100,
+    "request_rate_rps": 120
+   }
+  },
+  {
+   "operation": "restart",
+   "parameters": {
+    "service": "auth-service"
+   },
+   "result": "no_effect",
+   "note": "setting persists",
+   "health_after": {
+    "cpu_pct": 61.79,
+    "memory_pct": 56.66,
+    "latency_p95_ms": 1824.56,
+    "error_rate_pct": 0.4,
+    "availability_pct": 100,
+    "request_rate_rps": 119.85
+   }
+  }
+ ],
+ "S08": [
+  {
+   "operation": "scale",
+   "parameters": {
+    "service": "api-gateway",
+    "replicas": 6
+   },
+   "result": "success",
+   "note": "cpu recovers",
+   "health_after": {
+    "cpu_pct": 35,
+    "memory_pct": 55,
+    "latency_p95_ms": 220,
+    "error_rate_pct": 0.4,
+    "availability_pct": 100,
+    "request_rate_rps": 150
+   }
+  }
+ ],
+ "S09": [
+  {
+   "operation": "restart",
+   "parameters": {
+    "service": "notification-service"
+   },
+   "result": "fails_verification",
+   "note": "certificate is still expired",
+   "health_after": {
+    "cpu_pct": 34.04,
+    "memory_pct": 55.78,
+    "latency_p95_ms": 221.68,
+    "error_rate_pct": 100,
+    "availability_pct": 0.0,
+    "request_rate_rps": 121.54
+   }
+  },
+  {
+   "operation": "rollback",
+   "parameters": {
+    "service": "notification-service",
+    "target_version": "v2.3.5"
+   },
+   "result": "no_effect",
+   "note": "same certificate",
+   "health_after": {
+    "cpu_pct": 34.04,
+    "memory_pct": 55.78,
+    "latency_p95_ms": 221.68,
+    "error_rate_pct": 100,
+    "availability_pct": 0.0,
+    "request_rate_rps": 121.54
+   }
+  }
+ ],
+ "S10": [
+  {
+   "operation": "restart",
+   "parameters": {
+    "service": "report-service"
+   },
+   "result": "no_effect",
+   "note": "nothing to fix",
+   "health_after": {
+    "cpu_pct": 35.12,
+    "memory_pct": 55.43,
+    "latency_p95_ms": 297.52,
+    "error_rate_pct": 0.4,
+    "availability_pct": 100,
+    "request_rate_rps": 118.02
+   }
+  }
+ ],
+ "S11": [
+  {
+   "operation": "restart",
+   "parameters": {
+    "service": "user-profile-service"
+   },
+   "result": "no_effect",
+   "note": "unknown cause",
+   "health_after": {
+    "cpu_pct": 36.04,
+    "memory_pct": 56.71,
+    "latency_p95_ms": 893.87,
+    "error_rate_pct": 12.05,
+    "availability_pct": 100,
+    "request_rate_rps": 118.61
+   }
+  }
+ ],
+ "S12": [
+  {
+   "operation": "rollback",
+   "parameters": {
+    "service": "shipping-service",
+    "target_version": "v1.8.2"
+   },
+   "result": "no_effect",
+   "note": "carrier API is still slow",
+   "health_after": {
+    "cpu_pct": 34.56,
+    "memory_pct": 53.36,
+    "latency_p95_ms": 4781.72,
+    "error_rate_pct": 11.13,
+    "availability_pct": 100,
+    "request_rate_rps": 122.28
+   }
+  },
+  {
+   "operation": "restart",
+   "parameters": {
+    "service": "shipping-service"
+   },
+   "result": "no_effect",
+   "note": "no change",
+   "health_after": {
+    "cpu_pct": 34.56,
+    "memory_pct": 53.36,
+    "latency_p95_ms": 4781.72,
+    "error_rate_pct": 11.13,
+    "availability_pct": 100,
+    "request_rate_rps": 122.28
+   }
+  }
+ ]
+}
