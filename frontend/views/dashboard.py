@@ -69,12 +69,25 @@ with left:
 with right:
     st.markdown("### Incidents by severity")
     if d["by_severity"]:
-        sv = pd.DataFrame({"severity": list(d["by_severity"]), "count": list(d["by_severity"].values())})
+        import math
+        TAU = 2 * math.pi
         dom = [s for s in ui.SEV if s in d["by_severity"]]
-        ch = alt.Chart(sv).mark_arc(innerRadius=62, cornerRadius=4).encode(
-            theta="count:Q", color=alt.Color("severity:N", scale=alt.Scale(domain=dom, range=[ui.SEV[s] for s in dom]), legend=alt.Legend(orient="right", title=None))
-        ).properties(height=240).configure_view(strokeWidth=0)
-        st.altair_chart(ch, width="stretch")
+        sv = pd.DataFrame({"severity": dom, "count": [d["by_severity"][s] for s in dom]})
+        tot = sv["count"].sum()
+        sv["pct"] = sv["count"] / tot
+        sv["a0"] = sv["count"].cumsum().shift(fill_value=0) / tot * TAU      # slice start angle
+        sv["a1"] = sv["count"].cumsum() / tot * TAU                          # slice end angle
+        sv["mid"] = (sv["a0"] + sv["a1"]) / 2                                # label angle
+        sv["txt"] = sv["pct"].map(lambda p: f"{p:.0%}" if p >= 0.04 else "")  # skip tiny slices
+        ang = alt.Scale(domain=[0, TAU], range=[0, TAU])
+        arc = alt.Chart(sv).mark_arc(innerRadius=62, outerRadius=100, cornerRadius=4).encode(
+            theta=alt.Theta("a0:Q", scale=ang), theta2="a1:Q",
+            color=alt.Color("severity:N", scale=alt.Scale(domain=dom, range=[ui.SEV[s] for s in dom]),
+                            legend=alt.Legend(orient="right", title=None)),
+            tooltip=["severity:N", "count:Q", alt.Tooltip("pct:Q", format=".1%")])
+        txt = alt.Chart(sv).mark_text(radius=81, fontSize=14, fontWeight="bold", color="#0B1020").encode(
+            theta=alt.Theta("mid:Q", scale=ang), text="txt:N")
+        st.altair_chart((arc + txt).properties(height=240).configure_view(strokeWidth=0), width="stretch")
     else: st.caption("No incidents yet.")
 
 a, b = st.columns([3, 2])
